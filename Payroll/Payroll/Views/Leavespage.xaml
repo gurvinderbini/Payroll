@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Payroll.Views.Leavespage"
+             Title="Leaves">
+    <ContentPage.Content>
+
+        <ScrollView>
+            <StackLayout>
+                <Image Source="attendace_calendar.PNG"  
+                       Aspect="AspectFit"/>
+                <Image Source="attendace_bottom.PNG"  HorizontalOptions="FillAndExpand"
+                       Aspect="AspectFit"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

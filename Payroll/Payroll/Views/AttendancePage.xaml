@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Payroll.Views.AttendancePage"
+             Title="Attendance">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Image Source="attendance_week_meter.PNG"  
+                       Aspect="AspectFit" HorizontalOptions="Center"/>
+                <Image Source="attendance_schedule"
+                       Aspect="AspectFit"></Image>
+            </StackLayout>
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>
