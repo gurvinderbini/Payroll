@@ -7,25 +7,11 @@ namespace Payroll.Helpers
 {
     public static class Helper
     {
-        public static string GetSha1HashData(string data)
-        {
-            //create new instance of md5
-            SHA1 sha1 = SHA1.Create();
+        public static readonly string BaseUrl = "http://imgurvinderbini-001-site1.htempurl.com/";
 
-            //convert the input text to array of bytes
-            byte[] hashData = sha1.ComputeHash(Encoding.Default.GetBytes(data));
+        public static readonly string GetContacts = "api/Device/GetContacts?DeviceId={0}&PhoneNumber={1}";
 
-            //create new instance of StringBuilder to save hashed data
-            StringBuilder returnValue = new StringBuilder();
+        public static readonly string InsertContact = "api/Device";
 
-            //loop for each byte and add it to StringBuilder
-            for (int i = 0; i < hashData.Length; i++)
-            {
-                returnValue.Append(hashData[i].ToString());
-            }
-
-            // return hexadecimal string
-            return returnValue.ToString();
-        }
     }
 }

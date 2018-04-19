@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Firebase.Core;
 using Foundation;
+using Syncfusion.XForms.iOS.PopupLayout;
 using UIKit;
 
 namespace Payroll.iOS
@@ -23,6 +24,8 @@ namespace Payroll.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+
+            SfPopupLayoutRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

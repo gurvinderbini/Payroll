@@ -2,14 +2,29 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Payroll"
+             xmlns:popupLayout="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
              x:Class="Payroll.MainPage"
              Title="Login">
 
-    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+    <!--<StackLayout x:Name="Layout" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" >
         <Image Source="payroll.png" HorizontalOptions="CenterAndExpand"></Image>
-        <Button Text="Authenticate using Mobile Number" HorizontalOptions="CenterAndExpand"
+        <Button Text="Authenticate " HorizontalOptions="CenterAndExpand"
                  Clicked="Button_OnClicked" BackgroundColor="MediumBlue" Margin="10"
                 TextColor="White" CornerRadius="15" HeightRequest="60"></Button>
-    </StackLayout>
-   
+        <Button Clicked="Button_OnClicked"></Button>
+    </StackLayout>-->
+    
+    <popupLayout:SfPopupLayout x:Name="Layout">
+        <popupLayout:SfPopupLayout.Content>
+            <StackLayout >
+                <Button x:Name="clickToShowPopup" Text="ClickToShowPopup"
+                        VerticalOptions="Start" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+        </popupLayout:SfPopupLayout.Content>
+
+    </popupLayout:SfPopupLayout>
+
 </ContentPage>
+
+
+
