@@ -4,8 +4,6 @@
              xmlns:popupLayout="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
              x:Class="Payroll.MainPage"
              Title="Login">
-
-
    
     <popupLayout:SfPopupLayout x:Name="Layout" >
         <popupLayout:SfPopupLayout.Content>

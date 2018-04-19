@@ -15,9 +15,7 @@ namespace Payroll.DataTemplates
 		public CredentialsPopUp (Contact contact)
 		{
 			InitializeComponent ();
-		    NameLabel.Text = contact.Name;
-		    EmailLabel.Text = contact.Email;
-		    ContactLabel.Text = contact.PhoneNumber;
+		  
 
         }
 	}

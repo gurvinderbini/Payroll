@@ -17,6 +17,7 @@ using Payroll.ViewModels;
 using Payroll.Views;
 using Plugin.DeviceInfo;
 using Plugin.Messaging;
+using Rg.Plugins.Popup.Services;
 using Syncfusion.XForms.PopupLayout;
 using Xamarin.Forms;
 
@@ -31,20 +32,20 @@ namespace Payroll
             InitializeComponent();
             BindingContext = _viewModel;
            
-            Layout.PopupView.AppearanceMode = AppearanceMode.TwoButton;
-            Layout.PopupView.AcceptButtonText = "Yes, Its me !";
-            Layout.PopupView.AcceptCommand = new Command((async () =>
-            {
-                _viewModel.Contact.IsVarified = true;
-                var result = await new ContactsService().UpdateContact(_viewModel.Contact);
+            //Layout.PopupView.AppearanceMode = AppearanceMode.TwoButton;
+            //Layout.PopupView.AcceptButtonText = "Yes, Its me !";
+            //Layout.PopupView.AcceptCommand = new Command((async () =>
+            //{
+            //    //_viewModel.Contact.IsVarified = true;
+            //    //var result = await new ContactsService().UpdateContact(_viewModel.Contact);
 
-            }));
-            Layout.PopupView.DeclineCommand = new Command((() =>
-            {
-                DependencyService.Get<ICloseApplication>().CloseApp(); 
-            }));
-            Layout.PopupView.DeclineButtonText = "No, Thats not me !";
-            Layout.PopupView.HeaderTitle = "Your Details";
+            //}));
+            //Layout.PopupView.DeclineCommand = new Command((() =>
+            //{
+            //    DependencyService.Get<ICloseApplication>().CloseApp(); 
+            //}));
+            //Layout.PopupView.DeclineButtonText = "No, Thats not me !";
+            //Layout.PopupView.HeaderTitle = "Your Details";
            
             NavigationPage.SetHasNavigationBar(this, false);
         }
@@ -54,36 +55,36 @@ namespace Payroll
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-            _viewModel.LayoutVisibility = false;
-            UserDialogs.Instance.ShowLoading("Authenticating");
-            _viewModel.Contact = await new ContactsService().ValidateContact(CrossDevice.Device.DeviceId, Settings.Contact);
-            if (_viewModel.Contact != null)
+            try
             {
-                if (_viewModel.Contact.IsVarified)
+                _viewModel.LayoutVisibility = false;
+                UserDialogs.Instance.ShowLoading("Authenticating");
+                //Settings.Contact = "9023309984";
+                _viewModel.Contact = await new ContactsService().ValidateContact(CrossDevice.Device.DeviceId, Settings.Contact);
+                if (_viewModel.Contact != null)
                 {
-                    _viewModel.Navigate();
+                    if (_viewModel.Contact.IsVarified)
+                    {
+                        _viewModel.Navigate(_viewModel.Contact);
+                    }
+                    else
+                    {
+                        await PopupNavigation.PushAsync(new CredentialsRgPopUp(_viewModel.Contact));
+                    }
                 }
                 else
                 {
-                    Layout.PopupView.ContentTemplate = new CredentialsPopUp(_viewModel.Contact);
-                    Layout.Show();
+                    await UserDialogs.Instance.AlertAsync("You are not a registered user !");
+                    DependencyService.Get<ICloseApplication>().CloseApp(); ;
                 }
+                UserDialogs.Instance.HideLoading();
+                _viewModel.LayoutVisibility = true;
             }
-            else
+            catch (Exception e)
             {
-                await UserDialogs.Instance.AlertAsync("You are not a registered user !");
-                DependencyService.Get<ICloseApplication>().CloseApp();;
+               
             }
-            UserDialogs.Instance.HideLoading();
-            _viewModel.LayoutVisibility = true;
 
         }
-
-
-       
-    
-
-
     }
 }

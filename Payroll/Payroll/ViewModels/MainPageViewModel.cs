@@ -23,12 +23,9 @@ namespace Payroll.ViewModels
 
         public Contact Contact { get; set; }
 
-       
-
-
-        public void Navigate()
+        public void Navigate(Contact contact)
         {
-           NavigationService.NavigateTo(ViewModelLocator.Home);
+            NavigationService.NavigateTo(ViewModelLocator.Home, contact);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Payroll.ViewModels
     public class BaseViewModel : ViewModelBase
     {
         #region Variables
-        public INavigationService NavigationService;
+        public static INavigationService NavigationService;
         #endregion
 
         #region CTOR
