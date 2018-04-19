@@ -7,7 +7,8 @@
   <ItemGroup>
     <PackageReference Include="Acr.DeviceInfo" Version="6.1.0" />
     <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
-    <PackageReference Include="Xam.Plugins.Messaging" Version="5.1.0" />
+    <PackageReference Include="Plugin.FirebasePushNotification" Version="2.3.0" />
+    <PackageReference Include="Xam.Plugins.Messaging" Version="5.2.0" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
   </ItemGroup>
