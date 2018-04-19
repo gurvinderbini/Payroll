@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Acr.DeviceInfo" Version="6.1.0" />
     <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
+    <PackageReference Include="MvvmLightLibs" Version="5.4.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Plugin.FirebasePushNotification" Version="2.3.0" />
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="16.1.0.32" />
@@ -16,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="CommonServiceLocator">
+      <HintPath>C:\Users\admin\.nuget\packages\commonservicelocator\2.0.2\lib\netstandard2.0\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Build.Utilities.v4.0">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Microsoft.Build.Utilities.v4.0.dll</HintPath>
     </Reference>
