@@ -45,9 +45,23 @@ namespace Payroll
             base.OnAppearing();
             try
             {
+                if (Settings.IsLoggedIn)
+                {
+                    _viewModel.Navigate(new Contact());
+                    return;
+                }
+
                 _viewModel.LayoutVisibility = false;
                 UserDialogs.Instance.ShowLoading("Authenticating");
-                //Settings.Contact = "9023309984";
+
+                if (String.IsNullOrEmpty(Settings.Contact))
+                {
+                  await  PopupNavigation.PushAsync(new PhoneNumberRgPopUp());
+                    UserDialogs.Instance.HideLoading();
+                    return;
+                }
+
+               
                 _viewModel.Contact = await new ContactsService().ValidateContact(CrossDevice.Device.DeviceId, Settings.Contact);
                 if (_viewModel.Contact != null)
                 {
@@ -70,7 +84,7 @@ namespace Payroll
             }
             catch (Exception e)
             {
-               
+                UserDialogs.Instance.HideLoading();
             }
 
         }

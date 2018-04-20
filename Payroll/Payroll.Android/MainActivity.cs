@@ -1,19 +1,27 @@
-﻿using System;
-using Acr.UserDialogs;
-using Android;
-using Android.App;
-using Android.Content;
-using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Acr.UserDialogs;
+
 using Android.OS;
-using Android.Support.Design.Widget;
+using Android.App;
+using Android.Content.PM;
+
+using Android.Telephony;
+
+using Plugin.Fingerprint;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Android;
+using Android.Content;
+using Android.Provider;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
-using Android.Telephony;
-using Android.Util;
-using Plugin.Fingerprint;
+using Android.Widget;
+using Java.Lang;
+using Xamarin.Forms;
+using Exception = System.Exception;
+using Permission = Android.Content.PM.Permission;
+using String = System.String;
 
 namespace Payroll.Droid
 {
@@ -35,41 +43,6 @@ namespace Payroll.Droid
             LoadApplication(new App());
         }
 
-        protected override void OnStart()
-        {
-            base.OnStart();
-            //if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadPhoneState) == (int)Permission.Granted)
-            //{
-            //    // We have permission, go ahead and use the camera.
-            //}
-            //else
-            //{
-            //    // Camera permission is not granted. If necessary display rationale & request.
-            //    if (ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadPhoneState))
-            //    {
-            //        // Provide an additional rationale to the user if the permission was not granted
-            //        // and the user would benefit from additional context for the use of the permission.
-            //        // For example if the user has previously denied the permission.
-            //      //  Log.Info(TAG, "Displaying camera permission rationale to provide additional context.");
-
-            //        var requiredPermissions = new String[] { Manifest.Permission.ReadPhoneState };
-            //        Snackbar.Make(layout,
-            //                Resource.String.abc_action_bar_home_description,
-            //                Snackbar.LengthIndefinite)
-            //            .SetAction(Resource.String.ok,
-            //                new Action<View>(delegate (View obj) {
-            //                        ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_LOCATION);
-            //                    }
-            //                )
-            //            ).Show();
-            //    }
-            //    else
-            //    {
-            //      //  ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.Camera }, REQUEST_LOCATION);
-            //    }
-            //}
-        }
-
         public void GetPhoneNumber()
         {
             try
@@ -84,5 +57,6 @@ namespace Payroll.Droid
           
         }
     }
+    
 }
 

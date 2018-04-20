@@ -23,6 +23,7 @@ namespace Payroll.ViewModels
         {
             Contact.IsVarified = false;
             var result = await new ContactsService().UpdateContact(Contact);
+            Settings.IsLoggedIn = false;
             NavigationService.GoBack();
         }
     }

@@ -18,9 +18,13 @@ namespace Payroll.Views
 	    public Home(Contact contact)
 	    {
 	        InitializeComponent();
+	        Settings.IsLoggedIn = true;
+
 	        BindingContext = _viewModel;
 	        _viewModel.Contact = contact;
 	    }
+
+
 
         private void Button_OnClicked(object sender, EventArgs e)
 	    {

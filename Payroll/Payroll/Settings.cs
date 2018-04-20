@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Payroll.Model;
 using Plugin.Settings;
 
 namespace Payroll
@@ -21,6 +22,8 @@ namespace Payroll
         private const string SettingsKey = "settings_key";
         private const string DeviceTokenKey = "DeviceTokenKey";
         private const string ContactKey = "ContactKey";
+        private static string IsLoggedInKey = "IsLoggedInKey";
+       
         //private const string UsernameKey = "UsernameKey";
         //private const string PasswordKey = "PasswordKey";
         //private const string LoginTokenKey = "LoginTokenKey";
@@ -31,7 +34,8 @@ namespace Payroll
         private static readonly string SettingsDefault = string.Empty;
         private static readonly string DeviceTokenKeyDefault = string.Empty;
         private static readonly string ContactKeyDefault = string.Empty;
-
+        private const bool IsLoggedInKeyDefault = false;
+       
         //private static readonly string UsernameKeyDefault = string.Empty;
         //private static readonly string PasswordKeyDefault = string.Empty;
         //private static readonly string LoginTokenKeyDefault = string.Empty;
@@ -77,6 +81,20 @@ namespace Payroll
                 AppSettings.AddOrUpdateValue(ContactKey, value);
             }
         }
+
+        public static bool IsLoggedIn
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(IsLoggedInKey, IsLoggedInKeyDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(IsLoggedInKey, value);
+            }
+        }
+
+      
 
         //public static string Username
         //{
