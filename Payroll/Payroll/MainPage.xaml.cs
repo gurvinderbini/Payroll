@@ -45,15 +45,17 @@ namespace Payroll
             base.OnAppearing();
             try
             {
+                UserDialogs.Instance.ShowLoading("Authenticating");
+                Helper.IsFingerPrintAvailable=await Plugin.Fingerprint.CrossFingerprint.Current.IsAvailableAsync();
+
+                //if user is already logged in
                 if (Settings.IsLoggedIn)
                 {
                     _viewModel.Navigate(new Contact());
                     return;
                 }
-
-                _viewModel.LayoutVisibility = false;
-                UserDialogs.Instance.ShowLoading("Authenticating");
-
+             
+                //if we cannot retreive the contact
                 if (String.IsNullOrEmpty(Settings.Contact))
                 {
                   await  PopupNavigation.PushAsync(new PhoneNumberRgPopUp());
@@ -61,16 +63,17 @@ namespace Payroll
                     return;
                 }
 
-               
+                //if we retreive the contact and check whether it is verfied or not
                 _viewModel.Contact = await new ContactsService().ValidateContact(CrossDevice.Device.DeviceId, Settings.Contact);
                 if (_viewModel.Contact != null)
                 {
+                    //if yes than it is navigated
                     if (_viewModel.Contact.IsVarified)
                     {
                       _viewModel.Navigate(_viewModel.Contact);
                     }
                     else
-                    {
+                    { //otherwise verfied popup will open
                         await PopupNavigation.PushAsync(new CredentialsRgPopUp(_viewModel.Contact));
                     }
                 }
@@ -80,7 +83,6 @@ namespace Payroll
                     DependencyService.Get<ICloseApplication>().CloseApp(); ;
                 }
                 UserDialogs.Instance.HideLoading();
-                _viewModel.LayoutVisibility = true;
             }
             catch (Exception e)
             {
@@ -88,43 +90,5 @@ namespace Payroll
             }
 
         }
-
-        //private async void OnAuthenticate(object sender, EventArgs e)
-        //{
-        //    await AuthenticationAsync("Put your finger!");
-
-        //}
-
-        //private async Task AuthenticationAsync(string reason, string cancel = null, string fallback = null, string tooFast = null)
-        //{
-        //    _cancel = swAutoCancel.IsToggled ? new CancellationTokenSource(TimeSpan.FromSeconds(10)) : new CancellationTokenSource();
-        //    lblStatus.Text = "";
-
-        //    var dialogConfig = new AuthenticationRequestConfiguration(reason)
-        //    { // all optional
-        //        CancelTitle = cancel,
-        //        FallbackTitle = fallback,
-        //        AllowAlternativeAuthentication = swAllowAlternative.IsToggled
-        //    };
-
-        //    // optional
-
-        //    var result = await Plugin.Fingerprint.CrossFingerprint.Current.AuthenticateAsync(dialogConfig, _cancel.Token);
-
-        //    await SetResultAsync(result);
-        //}
-
-        //private async Task SetResultAsync(FingerprintAuthenticationResult result)
-        //{
-        //    if (result.Authenticated)
-        //    {
-        //        await DisplayAlert("FingerPrint Sample", "Success", "Ok");
-        //        _viewModel.Navigate(_viewModel.Contact);
-        //    }
-        //    else
-        //    {
-        //        await DisplayAlert("FingerPrint Sample", result.ErrorMessage, "Ok");
-        //    }
-        //}
     }
 }

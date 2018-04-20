@@ -4,7 +4,7 @@
              x:Class="Payroll.Views.Home"
              Title="Payroll App">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding LayoutVisibility}">
            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                   Text="Welcome to the Payroll App" TextColor="DodgerBlue" FontSize="Large" FontAttributes="Bold"/>
             <Button Text="Clear All Authentication" Command="{Binding ClearAuthenticationCommand}" Margin="10"

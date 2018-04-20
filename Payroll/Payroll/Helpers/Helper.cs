@@ -7,7 +7,9 @@ namespace Payroll.Helpers
 {
     public static class Helper
     {
-    
+        public static bool AuthenticationNeeded = true;
+
+        public static bool IsFingerPrintAvailable ;
 
     }
 }

@@ -23,7 +23,7 @@ namespace Payroll
         private const string DeviceTokenKey = "DeviceTokenKey";
         private const string ContactKey = "ContactKey";
         private static string IsLoggedInKey = "IsLoggedInKey";
-       
+        private static string DeviceSecurityPinKey = "DeviceSecurityPinKey";
         //private const string UsernameKey = "UsernameKey";
         //private const string PasswordKey = "PasswordKey";
         //private const string LoginTokenKey = "LoginTokenKey";
@@ -35,7 +35,8 @@ namespace Payroll
         private static readonly string DeviceTokenKeyDefault = string.Empty;
         private static readonly string ContactKeyDefault = string.Empty;
         private const bool IsLoggedInKeyDefault = false;
-       
+        private static readonly string DeviceSecurityPinKeyDefault = string.Empty;
+
         //private static readonly string UsernameKeyDefault = string.Empty;
         //private static readonly string PasswordKeyDefault = string.Empty;
         //private static readonly string LoginTokenKeyDefault = string.Empty;
@@ -94,7 +95,19 @@ namespace Payroll
             }
         }
 
-      
+        public static string DeviceSecurityPin
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(DeviceSecurityPinKey, DeviceSecurityPinKeyDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(DeviceSecurityPinKey, value);
+            }
+        }
+
+
 
         //public static string Username
         //{

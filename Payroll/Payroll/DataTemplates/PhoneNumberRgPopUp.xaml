@@ -9,7 +9,8 @@
             <StackLayout HorizontalOptions="FillAndExpand" 
                          VerticalOptions="FillAndExpand">
                 <StackLayout x:Name="PhoneNumberStack">
-                    <Entry x:Name="PhoneNumberEntry" Text="" Placeholder="Enter your phone number" />
+                    <Entry x:Name="PhoneNumberEntry" Text="" Placeholder="Enter your phone number" 
+                           Keyboard="Telephone"/>
                     <Entry x:Name="EmailEntry" Text="" Placeholder="Enter your email" />
 
                     <Button Text="Submit" TextColor="DodgerBlue" Clicked="Button_OnClicked"></Button>

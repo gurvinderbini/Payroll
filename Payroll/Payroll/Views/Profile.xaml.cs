@@ -15,6 +15,7 @@ namespace Payroll.Views
 		public Profile ()
 		{
 			InitializeComponent ();
+
 		}
 	}
 }

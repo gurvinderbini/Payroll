@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using Payroll.Helpers;
 using Payroll.Model;
 using Payroll.Services;
 using Rg.Plugins.Popup.Services;
@@ -22,8 +23,9 @@ namespace Payroll.ViewModels
         private async void ClearAuthentication()
         {
             Contact.IsVarified = false;
-            var result = await new ContactsService().UpdateContact(Contact);
             Settings.IsLoggedIn = false;
+            Helper.AuthenticationNeeded = true;
+            await new ContactsService().UpdateContact(Contact);
             NavigationService.GoBack();
         }
     }

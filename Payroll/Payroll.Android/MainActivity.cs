@@ -18,6 +18,7 @@ using Android.Support.V4.App;
 using Android.Support.V4.Content;
 using Android.Widget;
 using Java.Lang;
+using Plugin.CurrentActivity;
 using Xamarin.Forms;
 using Exception = System.Exception;
 using Permission = Android.Content.PM.Permission;
