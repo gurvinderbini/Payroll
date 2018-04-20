@@ -5,16 +5,32 @@
              x:Class="Payroll.MainPage"
              Title="Login">
    
-    <popupLayout:SfPopupLayout x:Name="Layout" >
-        <popupLayout:SfPopupLayout.Content>
-            <StackLayout  HorizontalOptions="FillAndExpand"
-                          VerticalOptions="FillAndExpand">
-                <Label x:Name="RefrenceLabel" HorizontalOptions="FillAndExpand" 
-                       VerticalOptions="FillAndExpand" HeightRequest="60"/>
-            </StackLayout>
-        </popupLayout:SfPopupLayout.Content>
-
-    </popupLayout:SfPopupLayout>
+     <StackLayout Orientation="Vertical" Padding="10">
+        <!--<Label x:Name="lblAuthenticationType"></Label>
+        <StackLayout Orientation="Horizontal">
+            <StackLayout.IsVisible>
+                <OnPlatform x:TypeArguments="x:Boolean"
+                            iOS="True"
+                            Android="True"
+                            WinPhone="False" />
+            </StackLayout.IsVisible>
+            <Switch x:Name="swAutoCancel"></Switch>
+            <Label Text="Cancel after 10sec"></Label>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <StackLayout.IsVisible>
+                <OnPlatform x:TypeArguments="x:Boolean"
+                            iOS="True"
+                            Android="False"
+                            WinPhone="False" />
+            </StackLayout.IsVisible>
+            <Switch x:Name="swAllowAlternative"></Switch>
+            <Label Text="Allow alternative authentication method (Password / PIN)"></Label>
+        </StackLayout>
+        <Button Text="Authenticate" Clicked="OnAuthenticate"></Button>
+        --><!--<Button Text="Authenticate localized" Clicked="OnAuthenticateLocalized"></Button>--><!--
+        <Label x:Name="lblStatus"></Label>-->
+    </StackLayout>
 
 </ContentPage>
 
