@@ -17,27 +17,34 @@ namespace Payroll.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Home : ContentPage
     {
-        public readonly HomeViewModel _viewModel = App.Locator.HomeViewModel;
+        public readonly HomeViewModel ViewModel = App.Locator.HomeViewModel;
         public Home()
         {
             InitializeComponent();
-            BindingContext = _viewModel;
+            BindingContext = ViewModel;
         }
         public Home(Contact contact)
         {
             InitializeComponent();
+            BindingContext = ViewModel;
 
             Settings.IsLoggedIn = true;
+            Settings.EntryID = contact.EntryID;
+            Settings.Name = contact.Name;
+            Settings.Email = contact.Email;
+            Settings.PhoneNumber = contact.PhoneNumber;
+            Settings.AccountNumber = contact.AccountNumber;
+            Settings.DeviceID = contact.DeviceID;
+            Settings.IsVarified = contact.IsVarified;
 
-            BindingContext = _viewModel;
-            _viewModel.Contact = contact;
+            ViewModel.Contact = contact;
 
 
             try
             {
                 if (Helper.AuthenticationNeeded)
                 {
-                    _viewModel.LayoutVisibility = false;
+                    ViewModel.LayoutVisibility = false;
 
                     if (Helper.IsFingerPrintAvailable)
                     {
@@ -52,7 +59,7 @@ namespace Payroll.Views
                 }
                 else
                 {
-                    _viewModel.LayoutVisibility = true;
+                    ViewModel.LayoutVisibility = true;
                 }
                
             }
@@ -79,7 +86,7 @@ namespace Payroll.Views
 
                 if (result.Authenticated)
                 {
-                    _viewModel.LayoutVisibility = true;
+                    ViewModel.LayoutVisibility = true;
                 }
                 else
                 {

@@ -18,13 +18,32 @@ namespace Payroll.ViewModels
 
         public RelayCommand ClearAuthenticationCommand=>new RelayCommand(ClearAuthentication);
 
-        public Contact Contact { get; set; }
+        private Contact _contact;
+
+        public Contact Contact
+        {
+            get => _contact;
+            set
+            {
+                _contact = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private async void ClearAuthentication()
         {
-            Contact.IsVarified = false;
-            Settings.IsLoggedIn = false;
             Helper.AuthenticationNeeded = true;
+
+            Settings.IsLoggedIn = false;
+            Settings.EntryID =0;
+            Settings.Name = String.Empty;
+            Settings.Email = String.Empty;
+            Settings.PhoneNumber = String.Empty;
+            Settings.AccountNumber = String.Empty;
+            Settings.DeviceID = String.Empty;
+            Settings.IsVarified = false;
+
+            Contact.IsVarified = false;
             await new ContactsService().UpdateContact(Contact);
             NavigationService.GoBack();
         }

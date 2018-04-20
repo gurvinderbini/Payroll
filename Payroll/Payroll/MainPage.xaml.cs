@@ -51,13 +51,22 @@ namespace Payroll
                 //if user is already logged in
                 if (Settings.IsLoggedIn)
                 {
-                    _viewModel.Navigate(new Contact());
+                    var contact=new Contact();
+                    Settings.IsLoggedIn = true;
+                    contact.EntryID= Settings.EntryID  ;
+                    contact.Name= Settings.Name  ;
+                    contact.Email= Settings.Email  ;
+                    contact.PhoneNumber= Settings.PhoneNumber  ;
+                    contact.AccountNumber= Settings.AccountNumber ;
+                    contact.DeviceID= Settings.DeviceID  ;
+                    contact.IsVarified=Settings.IsVarified  ;
+                    _viewModel.Navigate(contact);
                     return;
                 }
 
                 UserDialogs.Instance.ShowLoading("Authenticating");
                 //if we cannot retreive the contact
-                if (String.IsNullOrEmpty(Settings.Contact))
+                if (String.IsNullOrEmpty(Settings.PhoneNumber))
                 {
                   await  PopupNavigation.PushAsync(new PhoneNumberRgPopUp());
                     UserDialogs.Instance.HideLoading();
@@ -65,7 +74,7 @@ namespace Payroll
                 }
 
                 //if we retreive the contact and check whether it is verfied or not
-                _viewModel.Contact = await new ContactsService().ValidateContact(CrossDevice.Device.DeviceId, Settings.Contact);
+                _viewModel.Contact = await new ContactsService().ValidateContact(CrossDevice.Device.DeviceId, Settings.PhoneNumber);
                 if (_viewModel.Contact != null)
                 {
                     //if yes than it is navigated

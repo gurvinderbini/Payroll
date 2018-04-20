@@ -9,175 +9,104 @@ namespace Payroll
 {
     public static class Settings
     {
-        private static ISettings AppSettings
-        {
-            get
-            {
-                return CrossSettings.Current;
-            }
-        }
+        private static ISettings AppSettings => CrossSettings.Current;
 
         #region Setting Constants
 
         private const string SettingsKey = "settings_key";
         private const string DeviceTokenKey = "DeviceTokenKey";
-        private const string ContactKey = "ContactKey";
         private static string IsLoggedInKey = "IsLoggedInKey";
         private static string DeviceSecurityPinKey = "DeviceSecurityPinKey";
-        //private const string UsernameKey = "UsernameKey";
-        //private const string PasswordKey = "PasswordKey";
-        //private const string LoginTokenKey = "LoginTokenKey";
-        //private const string MainWebServiceUrlKey = "MainWebServiceUrlKey";
-        //private const string ContactListKey = "ContactListKey";
-        //private const string ContactsKey = "ContactsKey";
+
+        private const string PhoneNumberKey = "PhoneNumberKey";
+        private const string EntryIDKey = "EntryIDKey";
+        private const string NameKey = "NameKey";
+        private const string EmailKey = "EmailKey";
+        private const string AccountNumberKey = "AccountNumberKey";
+        private const string DeviceIDKey = "DeviceIDKey";
+        private const string IsVarifiedKey = "IsVarifiedKey";
+
+
 
         private static readonly string SettingsDefault = string.Empty;
         private static readonly string DeviceTokenKeyDefault = string.Empty;
-        private static readonly string ContactKeyDefault = string.Empty;
         private const bool IsLoggedInKeyDefault = false;
         private static readonly string DeviceSecurityPinKeyDefault = string.Empty;
 
-        //private static readonly string UsernameKeyDefault = string.Empty;
-        //private static readonly string PasswordKeyDefault = string.Empty;
-        //private static readonly string LoginTokenKeyDefault = string.Empty;
-        //private static readonly string MainWebServiceUrlDefault = "http://ezblast.pink/";
-        //private static readonly string ContactListDefault = "Contact/GetLists";
-        //private static readonly string ContactsDefault = "Contact/GetContacts";
+        private static readonly string PhoneNumberKeyDefault = string.Empty;
+        private static readonly int EntryIDKeyDefault = 0;
+        private static readonly string NameKeyDefault = string.Empty;
+        private static readonly string EmailKeyDefault = string.Empty;
+        private static readonly string AccountNumberKeyDefault = string.Empty;
+        private static readonly string DeviceIDKeyDefault = string.Empty;
+        private static readonly bool IsVarifiedKeyDefault = false;
 
         #endregion
 
 
         public static string GeneralSettings
         {
-            get
-            {
-                return AppSettings.GetValueOrDefault(SettingsKey, SettingsDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(SettingsKey, value);
-            }
+            get => AppSettings.GetValueOrDefault(SettingsKey, SettingsDefault);
+            set => AppSettings.AddOrUpdateValue(SettingsKey, value);
         }
 
         public static string DeviceToken
         {
-            get
-            {
-                return AppSettings.GetValueOrDefault(DeviceTokenKey, DeviceTokenKeyDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(DeviceTokenKey, value);
-            }
+            get => AppSettings.GetValueOrDefault(DeviceTokenKey, DeviceTokenKeyDefault);
+            set => AppSettings.AddOrUpdateValue(DeviceTokenKey, value);
         }
-
-        public static string Contact
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(ContactKey, ContactKeyDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(ContactKey, value);
-            }
-        }
+       
 
         public static bool IsLoggedIn
         {
-            get
-            {
-                return AppSettings.GetValueOrDefault(IsLoggedInKey, IsLoggedInKeyDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(IsLoggedInKey, value);
-            }
+            get => AppSettings.GetValueOrDefault(IsLoggedInKey, IsLoggedInKeyDefault);
+            set => AppSettings.AddOrUpdateValue(IsLoggedInKey, value);
         }
 
         public static string DeviceSecurityPin
         {
-            get
-            {
-                return AppSettings.GetValueOrDefault(DeviceSecurityPinKey, DeviceSecurityPinKeyDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(DeviceSecurityPinKey, value);
-            }
+            get => AppSettings.GetValueOrDefault(DeviceSecurityPinKey, DeviceSecurityPinKeyDefault);
+            set => AppSettings.AddOrUpdateValue(DeviceSecurityPinKey, value);
+        }
+
+        public static string PhoneNumber
+        {
+            get => AppSettings.GetValueOrDefault(PhoneNumberKey, PhoneNumberKeyDefault);
+            set => AppSettings.AddOrUpdateValue(PhoneNumberKey, value);
+        }
+
+        public static int EntryID
+        {
+            get => AppSettings.GetValueOrDefault(EntryIDKey, EntryIDKeyDefault);
+            set => AppSettings.AddOrUpdateValue(EntryIDKey, value);
+        }
+        public static string Name
+        {
+            get => AppSettings.GetValueOrDefault(NameKey, NameKeyDefault);
+            set => AppSettings.AddOrUpdateValue(NameKey, value);
+        }
+        public static string Email
+        {
+            get => AppSettings.GetValueOrDefault(EmailKey, EmailKeyDefault);
+            set => AppSettings.AddOrUpdateValue(EmailKey, value);
+        }
+        public static string AccountNumber
+        {
+            get => AppSettings.GetValueOrDefault(AccountNumberKey, AccountNumberKeyDefault);
+            set => AppSettings.AddOrUpdateValue(AccountNumberKey, value);
+        }
+        public static string DeviceID
+        {
+            get => AppSettings.GetValueOrDefault(DeviceIDKey, DeviceIDKeyDefault);
+            set => AppSettings.AddOrUpdateValue(DeviceIDKey, value);
+        }
+        public static bool IsVarified
+        {
+            get => AppSettings.GetValueOrDefault(IsVarifiedKey, IsVarifiedKeyDefault);
+            set => AppSettings.AddOrUpdateValue(IsVarifiedKey, value);
         }
 
 
-
-        //public static string Username
-        //{
-        //    get
-        //    {
-        //        return AppSettings.GetValueOrDefault(UsernameKey, UsernameKeyDefault);
-        //    }
-        //    set
-        //    {
-        //        AppSettings.AddOrUpdateValue(UsernameKey, value);
-        //    }
-        //}
-
-        //public static string Password
-        //{
-        //    get
-        //    {
-        //        return AppSettings.GetValueOrDefault(PasswordKey, PasswordKeyDefault);
-        //    }
-        //    set
-        //    {
-        //        AppSettings.AddOrUpdateValue(PasswordKey, value);
-        //    }
-        //}
-
-        //public static string MainWebServiceUrl
-        //{
-        //    get
-        //    {
-        //        return AppSettings.GetValueOrDefault(MainWebServiceUrlKey, MainWebServiceUrlDefault);
-        //    }
-        //    set
-        //    {
-        //        AppSettings.AddOrUpdateValue(MainWebServiceUrlKey, value);
-        //    }
-        //}
-
-        //public static string LoginToken
-        //{
-        //    get
-        //    {
-        //        return AppSettings.GetValueOrDefault(LoginTokenKey, LoginTokenKeyDefault);
-        //    }
-        //    set
-        //    {
-        //        AppSettings.AddOrUpdateValue(LoginTokenKey, value);
-        //    }
-        //}
-        //public static string ContactList
-        //{
-        //    get
-        //    {
-        //        return AppSettings.GetValueOrDefault(ContactListKey, ContactListDefault);
-        //    }
-        //    set
-        //    {
-        //        AppSettings.AddOrUpdateValue(ContactListKey, value);
-        //    }
-        //}
-        //public static string Contacts
-        //{
-        //    get
-        //    {
-        //        return AppSettings.GetValueOrDefault(ContactsKey, ContactsDefault);
-        //    }
-        //    set
-        //    {
-        //        AppSettings.AddOrUpdateValue(ContactsKey, value);
-        //    }
-        //}
 
 
 

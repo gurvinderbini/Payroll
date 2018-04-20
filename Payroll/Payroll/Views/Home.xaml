@@ -5,7 +5,9 @@
              Title="Payroll App">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding LayoutVisibility}">
-           <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                   Text="{Binding Contact.Name,StringFormat='Hi {0} !'}" TextColor="DodgerBlue" FontSize="Large" FontAttributes="Bold"/>
+            <Label HorizontalOptions="CenterAndExpand" Margin="10"
                   Text="Welcome to the Payroll App" TextColor="DodgerBlue" FontSize="Large" FontAttributes="Bold"/>
             <Button Text="Clear All Authentication" Command="{Binding ClearAuthenticationCommand}" Margin="10"
                     BackgroundColor="DodgerBlue" TextColor="White"/>

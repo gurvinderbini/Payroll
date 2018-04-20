@@ -49,7 +49,7 @@ namespace Payroll.Droid
             try
             {
                 TelephonyManager mTelephonyMgr = (TelephonyManager)GetSystemService(TelephonyService);
-               Payroll.Settings.Contact = mTelephonyMgr.Line1Number;
+               Payroll.Settings.PhoneNumber = mTelephonyMgr.Line1Number;
             }
             catch (Exception e)
             {

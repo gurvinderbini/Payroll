@@ -10,7 +10,7 @@ using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Payroll.DataTemplates
+namespace Payroll.Popups
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class NumericPinPopUp : PopupPage
