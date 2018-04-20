@@ -66,7 +66,7 @@ namespace Payroll.Views
         {
             try
             {
-                var dialogConfig = new AuthenticationRequestConfiguration("Put your finger!")
+                var dialogConfig = new AuthenticationRequestConfiguration("Place your fingerprint to authenticate")
                 {
                     CancelTitle = "Cancel",
                     FallbackTitle = null,
@@ -83,7 +83,7 @@ namespace Payroll.Views
                 }
                 else
                 {
-                    await DisplayAlert("FingerPrint Sample", result.ErrorMessage, "Ok");
+                    await DisplayAlert("Cannot Authenticate with Fingerprint, try pin instead", result.ErrorMessage, "Ok");
                     PinAuthentication();
                 }
             }

@@ -45,7 +45,7 @@ namespace Payroll
             base.OnAppearing();
             try
             {
-                UserDialogs.Instance.ShowLoading("Authenticating");
+              
                 Helper.IsFingerPrintAvailable=await Plugin.Fingerprint.CrossFingerprint.Current.IsAvailableAsync();
 
                 //if user is already logged in
@@ -54,7 +54,8 @@ namespace Payroll
                     _viewModel.Navigate(new Contact());
                     return;
                 }
-             
+
+                UserDialogs.Instance.ShowLoading("Authenticating");
                 //if we cannot retreive the contact
                 if (String.IsNullOrEmpty(Settings.Contact))
                 {
