@@ -5,7 +5,7 @@
              x:Class="Payroll.Popups.NumericPinPopUp">
     <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
         <StackLayout BackgroundColor="White" Padding="0, 10, 0, 0">
-            <Label Text="Enter your Pin" TextColor="Gray" FontSize="20" HorizontalOptions="Center"></Label>
+            <Label Text="Set 4 digit pin" TextColor="Gray" FontSize="20" HorizontalOptions="Center"></Label>
             <StackLayout HorizontalOptions="FillAndExpand" 
                          VerticalOptions="FillAndExpand">
                 <StackLayout x:Name="PhoneNumberStack">

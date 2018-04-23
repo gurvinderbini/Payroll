@@ -2,9 +2,13 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Payroll.App">
-	<Application.Resources>
-
-		<!-- Application resource dictionary -->
-
-	</Application.Resources>
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryBlue">#0f2a7c</Color>
+            <Color x:Key="SecondaryBlue">#3b56a3</Color>
+            <Color x:Key="NormalBlue">#0000CD</Color>
+        </ResourceDictionary>
+        <!-- Application resource dictionary -->
+  
+    </Application.Resources>
 </Application>

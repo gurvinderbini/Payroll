@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Payroll.DataTemplates;
 using Payroll.Helpers;
+using Payroll.Interfaces;
 using Payroll.Model;
 using Payroll.ViewModels;
 using Plugin.Fingerprint.Abstractions;
@@ -23,11 +24,12 @@ namespace Payroll.Views
             InitializeComponent();
             BindingContext = ViewModel;
         }
+
         public Home(Contact contact)
         {
             InitializeComponent();
             BindingContext = ViewModel;
-
+            NavigationPage.SetHasNavigationBar(this, false);
             Settings.IsLoggedIn = true;
             Settings.EntryID = contact.EntryID;
             Settings.Name = contact.Name;
@@ -61,22 +63,22 @@ namespace Payroll.Views
                 {
                     ViewModel.LayoutVisibility = true;
                 }
-               
+
             }
             catch (Exception e)
             {
 
             }
         }
-      
+
         private async void FingerPrintAuthentication()
         {
             try
             {
                 var dialogConfig = new AuthenticationRequestConfiguration("Place your fingerprint to authenticate")
                 {
-                    CancelTitle = "Cancel",
-                    FallbackTitle = null,
+                    CancelTitle = null,
+                    FallbackTitle = "Use Pin",
                     UseDialog = true,
                     AllowAlternativeAuthentication = true
                 };
@@ -84,21 +86,30 @@ namespace Payroll.Views
                 var result = await Plugin.Fingerprint.CrossFingerprint.Current.AuthenticateAsync
                     (dialogConfig, new CancellationTokenSource(TimeSpan.FromSeconds(30)).Token);
 
+
                 if (result.Authenticated)
                 {
                     ViewModel.LayoutVisibility = true;
                 }
+                else if (result.Status == FingerprintAuthenticationResultStatus.Canceled)
+                {
+                    DependencyService.Get<ICloseApplication>().CloseApp();
+                    //var doQuit = await UserDialogs.Instance.ConfirmAsync("Do you want to quit the app");
+                    //if (doQuit)
+                    //{
+                        
+                    //}
+                }
                 else
                 {
-                    await DisplayAlert("Cannot Authenticate with Fingerprint, try pin instead", result.ErrorMessage, "Ok");
                     PinAuthentication();
                 }
             }
             catch (Exception e)
             {
-                
+
             }
-          
+
         }
 
         private async void PinAuthentication()
@@ -117,12 +128,8 @@ namespace Payroll.Views
             }
             catch (Exception e)
             {
-               
+
             }
-
-         
         }
-
-       
     }
 }

@@ -49,7 +49,8 @@ namespace Payroll.Droid
             try
             {
                 TelephonyManager mTelephonyMgr = (TelephonyManager)GetSystemService(TelephonyService);
-               Payroll.Settings.PhoneNumber = mTelephonyMgr.Line1Number;
+                if(mTelephonyMgr.Line1Number.Equals("15555215554"))return;
+                Helpers.Helper.AutoRetreivedPhoneNumber = mTelephonyMgr.Line1Number;
             }
             catch (Exception e)
             {

@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Acr.UserDialogs;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using Payroll.Helpers;
+using Payroll.Interfaces;
 using Payroll.Model;
 using Payroll.Services;
 using Rg.Plugins.Popup.Services;
+using Xamarin.Forms;
 
 namespace Payroll.ViewModels
 {
@@ -17,6 +20,7 @@ namespace Payroll.ViewModels
         }
 
         public RelayCommand ClearAuthenticationCommand=>new RelayCommand(ClearAuthentication);
+        public RelayCommand CloseCommand=>new RelayCommand(Close);
 
         private Contact _contact;
 
@@ -27,6 +31,15 @@ namespace Payroll.ViewModels
             {
                 _contact = value;
                 RaisePropertyChanged();
+            }
+        }
+
+        private async void Close()
+        {
+            var result = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to quit the app");
+            if (result)
+            {
+                DependencyService.Get<ICloseApplication>().CloseApp();
             }
         }
 

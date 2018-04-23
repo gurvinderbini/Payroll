@@ -11,5 +11,7 @@ namespace Payroll.Helpers
 
         public static bool IsFingerPrintAvailable ;
 
+        public static string AutoRetreivedPhoneNumber=String.Empty;
+
     }
 }
