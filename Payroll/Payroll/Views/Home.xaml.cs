@@ -107,9 +107,7 @@ namespace Payroll.Views
             }
             catch (Exception e)
             {
-
             }
-
         }
 
         private async void PinAuthentication()
@@ -118,17 +116,15 @@ namespace Payroll.Views
             {
                 if (String.IsNullOrEmpty(Settings.DeviceSecurityPin))
                 {
-                    await PopupNavigation.PushAsync(new NumericPinPopUp(this));
+                    await PopupNavigation.PushAsync(new SetNumericPinPopUp(this));
                 }
                 else
                 {
                     await PopupNavigation.PushAsync(new EnterPinPopUp(this));
-
                 }
             }
             catch (Exception e)
             {
-
             }
         }
     }
