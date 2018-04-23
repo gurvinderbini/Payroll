@@ -17,6 +17,7 @@ using Android.Provider;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
 using Android.Widget;
+using FormsPinView.Droid;
 using Java.Lang;
 using Plugin.CurrentActivity;
 using Xamarin.Forms;
@@ -39,7 +40,7 @@ namespace Payroll.Droid
            // Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
             global::Xamarin.Forms.Forms.Init(this, bundle);
             CrossFingerprint.SetCurrentActivityResolver(() => this);
-
+            PinItemViewRenderer.Init();
             GetPhoneNumber();
             LoadApplication(new App());
         }

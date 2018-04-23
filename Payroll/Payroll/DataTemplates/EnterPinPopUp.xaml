@@ -2,19 +2,14 @@
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:pcl="clr-namespace:FormsPinView.PCL;assembly=FormsPinView.PCL"
              x:Class="Payroll.DataTemplates.EnterPinPopUp">
     <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
-        <StackLayout BackgroundColor="White" Padding="0, 10, 0, 0">
-            <Label Text="Enter your Pin" TextColor="Gray" FontSize="20" HorizontalOptions="Center"></Label>
-            <StackLayout HorizontalOptions="FillAndExpand" 
-                         VerticalOptions="FillAndExpand">
-                <StackLayout x:Name="PhoneNumberStack">
-                    <Entry x:Name="PinEntry" Text="9999" Placeholder="Enter your pin" 
-                            IsPassword="True" TextChanged="PinEntry_OnTextChanged" />
-                   
-                    <Button Text="Verify" TextColor="DodgerBlue" Clicked="Button_OnClicked"></Button>
-                </StackLayout>
-            </StackLayout>
-        </StackLayout>
+
+        <Frame HorizontalOptions="CenterAndExpand"  Padding="0, 10, 0, 0" CornerRadius="20">
+            <pcl:PinView x:Name="MyPinView" Title="Enter Security Pin"
+                         BindingContext="{Binding PinViewModel}" BackgroundColor="White"
+                         HorizontalOptions="FillAndExpand"></pcl:PinView>
+        </Frame>
     </StackLayout>
 </pages:PopupPage>

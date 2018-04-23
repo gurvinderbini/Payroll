@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Firebase.Core;
+using FormsPinView.iOS;
 using Foundation;
 using Syncfusion.XForms.iOS.PopupLayout;
 using UIKit;
@@ -26,6 +27,7 @@ namespace Payroll.iOS
             global::Xamarin.Forms.Forms.Init();
 
             SfPopupLayoutRenderer.Init();
+            PinItemViewRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
