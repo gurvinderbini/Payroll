@@ -16,6 +16,8 @@ using Payroll.Model;
 using Payroll.NavigationService;
 using Payroll.Services;
 using Plugin.DeviceInfo;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
@@ -33,7 +35,7 @@ namespace Payroll.ViewModels
         {
             try
             {
-
+           
                 Helper.IsFingerPrintAvailable = await Plugin.Fingerprint.CrossFingerprint.Current.IsAvailableAsync();
 
                 //if user is already logged in

@@ -22,7 +22,9 @@ using Java.Lang;
 using Plugin.CurrentActivity;
 using Xamarin.Forms;
 using Exception = System.Exception;
-using Permission = Android.Content.PM.Permission;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using Permission = Plugin.Permissions.Abstractions.Permission;
 using String = System.String;
 
 namespace Payroll.Droid
@@ -44,8 +46,11 @@ namespace Payroll.Droid
             GetPhoneNumber();
             LoadApplication(new App());
         }
-
-        public void GetPhoneNumber()
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+        public  void GetPhoneNumber()
         {
             try
             {

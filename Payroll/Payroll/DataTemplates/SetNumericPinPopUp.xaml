@@ -11,19 +11,5 @@
                          BindingContext="{Binding PinViewModel}" BackgroundColor="White"
                          HorizontalOptions="FillAndExpand"></pcl:PinView>
         </Frame>
-        <!--<StackLayout BackgroundColor="White" Padding="0, 10, 0, 0">
-            <Label Text="Enter your Pin" TextColor="Gray" FontSize="20" HorizontalOptions="Center"></Label>
-            <StackLayout HorizontalOptions="FillAndExpand" 
-                         VerticalOptions="FillAndExpand">
-                <StackLayout x:Name="PhoneNumberStack">
-                    <Entry x:Name="PinEntry" Text="" Placeholder="Enter your pin" 
-                            IsPassword="True" TextChanged="PinEntry_OnTextChanged"/>
-                    <Entry x:Name="Pin2Entry" Text="" Placeholder="Re enter your pin" 
-                            IsPassword="True" TextChanged="Pin2Entry_OnTextChanged"/>
-
-                    <Button Text="Set Pin" TextColor="DodgerBlue" Clicked="Button_OnClicked"></Button>
-                </StackLayout>
-            </StackLayout>
-        </StackLayout>-->
     </StackLayout>
 </pages:PopupPage>
