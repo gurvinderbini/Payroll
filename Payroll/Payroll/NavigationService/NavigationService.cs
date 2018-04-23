@@ -131,6 +131,7 @@ namespace Payroll.NavigationService
         {
             navigation.BarBackgroundColor = Color.FromHex("#D7D6D7");
             navigation.BarTextColor = Color.White;
+           
             _navigation = navigation;
         }
     }

@@ -5,7 +5,7 @@ using System.Diagnostics;
 using Payroll.Views;
 using FormsPinView.PCL;
 using GalaSoft.MvvmLight;
-
+using Payroll.ViewModels;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms.Xaml;
@@ -28,13 +28,13 @@ namespace Payroll.DataTemplates
         }
 
 
-        public SetNumericPinPopUp(Home home)
+        public SetNumericPinPopUp(HomeViewModel home)
         {
             InitializeComponent();
             var viewModel = new SetPinAuthViewModel(this);
             viewModel.PinViewModel.Success += (object sender, EventArgs e) =>
             {
-                home.ViewModel.LayoutVisibility = true;
+                home.LayoutVisibility = true;
                 PopupNavigation.PopAsync();
             };
             base.BindingContext = viewModel;

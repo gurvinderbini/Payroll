@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using Acr.UserDialogs;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using Payroll.DataTemplates;
 using Payroll.Helpers;
 using Payroll.Interfaces;
 using Payroll.Model;
 using Payroll.NavigationService;
 using Payroll.Services;
+using Plugin.Fingerprint.Abstractions;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
@@ -45,9 +48,106 @@ namespace Payroll.ViewModels
         #endregion
 
         #region Events
+        public void Initilize(Contact contact)
+        {
+            Settings.IsLoggedIn = true;
+            Settings.EntryID = contact.EntryID;
+            Settings.Name = contact.Name;
+            Settings.Email = contact.Email;
+            Settings.PhoneNumber = contact.PhoneNumber;
+            Settings.AccountNumber = contact.AccountNumber;
+            Settings.DeviceID = contact.DeviceID;
+            Settings.IsVarified = contact.IsVarified;
+
+            Contact = contact;
+
+
+            try
+            {
+                if (Helper.AuthenticationNeeded)
+                {
+                    LayoutVisibility = false;
+
+                    if (Helper.IsFingerPrintAvailable)
+                    {
+                        FingerPrintAuthentication();
+                    }
+                    else
+                    {
+                        PinAuthentication();
+                    }
+
+                    Helper.AuthenticationNeeded = false;
+                }
+                else
+                {
+                    LayoutVisibility = true;
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        private async void FingerPrintAuthentication()
+        {
+            try
+            {
+                var dialogConfig = new AuthenticationRequestConfiguration("Place your fingerprint to authenticate")
+                {
+                    CancelTitle = null,
+                    FallbackTitle = "Use Pin",
+                    UseDialog = true,
+                    AllowAlternativeAuthentication = true
+                };
+
+                var result = await Plugin.Fingerprint.CrossFingerprint.Current.AuthenticateAsync
+                    (dialogConfig, new CancellationTokenSource(TimeSpan.FromSeconds(30)).Token);
+
+
+                if (result.Authenticated)
+                {
+                    LayoutVisibility = true;
+                }
+                else if (result.Status == FingerprintAuthenticationResultStatus.Canceled)
+                {
+                    DependencyService.Get<ICloseApplication>().CloseApp();
+                }
+                else
+                {
+                    PinAuthentication();
+                }
+            }
+            catch (Exception e)
+            {
+                // ignored
+            }
+        }
+
+        private async void PinAuthentication()
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(Settings.DeviceSecurityPin))
+                {
+                    await PopupNavigation.PushAsync(new SetNumericPinPopUp(this));
+                }
+                else
+                {
+                    await PopupNavigation.PushAsync(new EnterPinPopUp(this));
+                }
+            }
+            catch (Exception e)
+            {
+                // ignored
+            }
+        }
+
         private void PaySlips()
         {
-            NavigationService.NavigateTo(ViewModelLocator.PaySlipsList);
+            NavigationService.NavigateTo(ViewModelLocator.PaySlipsDetail);
         }
 
         private async void Close()
@@ -77,5 +177,7 @@ namespace Payroll.ViewModels
             NavigationService.GoBack();
         } 
         #endregion
+
+     
     }
 }

@@ -29,6 +29,7 @@ namespace Payroll
             _navigationService.Configure(ViewModelLocator.Home, typeof(Home));
             _navigationService.Configure(ViewModelLocator.MainPage, typeof(MainPage));
             _navigationService.Configure(ViewModelLocator.PaySlipsList, typeof(PaySlipsList));
+            _navigationService.Configure(ViewModelLocator.PaySlipsDetail, typeof(PaySlipDetail));
 
             if (!SimpleIoc.Default.IsRegistered<INavigationService>())
                 SimpleIoc.Default.Register<INavigationService>(() => _navigationService);

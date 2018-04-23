@@ -7,6 +7,11 @@
             <Color x:Key="PrimaryBlue">#0f2a7c</Color>
             <Color x:Key="SecondaryBlue">#3b56a3</Color>
             <Color x:Key="NormalBlue">#0000CD</Color>
+
+
+            <Style  TargetType="NavigationPage">
+                <Setter Property="HasNavigationBar" Value="False"/>
+            </Style>
         </ResourceDictionary>
         <!-- Application resource dictionary -->
   

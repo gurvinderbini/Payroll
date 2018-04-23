@@ -1,17 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:Payroll.CustomControls;assembly=Payroll"
              x:Class="Payroll.Views.PaySlipDetail"
              Title="PaySlip Detail"
              BackgroundColor="#FFFFFF">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <Image Source="payslip_detail_top.png" Aspect="AspectFit" HorizontalOptions="CenterAndExpand"/>
-                <Image Source="payslip_detail_bottom.png" Aspect="AspectFit" HorizontalOptions="FillAndExpand"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <customControls:GradientStackLayout HorizontalOptions="FillAndExpand"
+                                                StartColor="{StaticResource PrimaryBlue}"
+                                                EndColor="{StaticResource SecondaryBlue}"  >
+                <Grid HeightRequest="60" Margin="5,0,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="back.png" Margin="10">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Grid.Column="1" Text="Play Slip" HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand" TextColor="White"
+                           FontSize="Large" FontAttributes="Bold"/>
+                </Grid>
+            </customControls:GradientStackLayout>
+            <ScrollView Grid.Row="1">
+                <StackLayout>
+                    <!--<Image Source="payslip_detail_top.png" Aspect="AspectFit" HorizontalOptions="CenterAndExpand"/>
+                    <Image Source="payslip_detail_bottom.png" Aspect="AspectFit" HorizontalOptions="FillAndExpand"/>-->
 
-            </StackLayout>
-        </ScrollView>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+   
 
     </ContentPage.Content>
 </ContentPage>

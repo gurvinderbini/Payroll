@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Views;
 using Payroll.Services;
 
@@ -39,6 +40,8 @@ namespace Payroll.ViewModels
         public static ContactsService ContactsService => new ContactsService();
 
         #endregion
+
+      
 
     }
 }
