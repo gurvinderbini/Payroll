@@ -9,7 +9,7 @@
                Aspect="AspectFill"/>
         <StackLayout Orientation="Vertical" >
             <Image Source="payroll.png" HorizontalOptions="FillAndExpand"
-                   VerticalOptions="Center" Margin="20,30,20,0" Aspect="AspectFit" Opacity=".9"></Image>
+                   VerticalOptions="CenterAndExpand" Margin="20,60,20,0" Aspect="AspectFit" Opacity=".9"></Image>
             <Button TextColor="{StaticResource PrimaryBlue}"  BackgroundColor="White" Text="Login" FontSize="20"
                    Command="{Binding LoginCommand}" VerticalOptions="EndAndExpand" 
                     HorizontalOptions="FillAndExpand" CornerRadius="20"
