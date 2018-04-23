@@ -5,7 +5,6 @@
              Title="PaySlips">
     <ContentPage.Content>
         <StackLayout>
-            <!--<SearchBar></SearchBar>-->
             <ListView x:Name="PayslipsListview" HorizontalOptions="FillAndExpand"
                       VerticalOptions="FillAndExpand" HasUnevenRows="True" SeparatorVisibility="Default"
                       SeparatorColor="MediumBlue" ItemSelected="PayslipsListview_OnItemSelected">

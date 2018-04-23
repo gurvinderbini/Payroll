@@ -4,11 +4,19 @@
              x:Class="Payroll.MainPage"
              Title="Login">
    
-     <StackLayout Orientation="Vertical" Padding="10">
-       <Button TextColor="White"  BackgroundColor="DodgerBlue" Text="Login" FontSize="20"
-               Clicked="Button_OnClicked" VerticalOptions="CenterAndExpand" 
-               HorizontalOptions="CenterAndExpand" CornerRadius="15"></Button>
-    </StackLayout>
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Image Source="login_background.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+               Aspect="AspectFill"/>
+        <StackLayout Orientation="Vertical" >
+            <Image Source="payroll.png" HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Center" Margin="20,30,20,0" Aspect="AspectFit" Opacity=".9"></Image>
+            <Button TextColor="{StaticResource PrimaryBlue}"  BackgroundColor="White" Text="Login" FontSize="20"
+                   Command="{Binding LoginCommand}" VerticalOptions="EndAndExpand" 
+                    HorizontalOptions="FillAndExpand" CornerRadius="20"
+                    Margin="30,30,30,60" Opacity=".9"></Button>
+        </StackLayout>
+    </Grid>
+  
 
 </ContentPage>
 

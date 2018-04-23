@@ -9,8 +9,8 @@
             <StackLayout HorizontalOptions="FillAndExpand" 
                          VerticalOptions="FillAndExpand">
                 <StackLayout x:Name="PhoneNumberStack">
-                    <Entry x:Name="PinEntry" Text="" Placeholder="Enter your pin" 
-                            IsPassword="True" TextChanged="PinEntry_OnTextChanged"/>
+                    <Entry x:Name="PinEntry" Text="9999" Placeholder="Enter your pin" 
+                            IsPassword="True" TextChanged="PinEntry_OnTextChanged" />
                    
                     <Button Text="Verify" TextColor="DodgerBlue" Clicked="Button_OnClicked"></Button>
                 </StackLayout>

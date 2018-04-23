@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Views;
 using Payroll.Helpers;
 using Payroll.Interfaces;
 using Payroll.Model;
+using Payroll.NavigationService;
 using Payroll.Services;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
@@ -15,12 +16,13 @@ namespace Payroll.ViewModels
 {
     public class HomeViewModel:BaseViewModel
     {
+        #region CTOR
         public HomeViewModel(INavigationService navigationService) : base(navigationService)
         {
         }
+        #endregion
 
-        public RelayCommand ClearAuthenticationCommand=>new RelayCommand(ClearAuthentication);
-        public RelayCommand CloseCommand=>new RelayCommand(Close);
+        #region Observable Properties
 
         private Contact _contact;
 
@@ -32,6 +34,20 @@ namespace Payroll.ViewModels
                 _contact = value;
                 RaisePropertyChanged();
             }
+        }
+
+        #endregion
+
+        #region Commands
+        public RelayCommand ClearAuthenticationCommand => new RelayCommand(ClearAuthentication);
+        public RelayCommand CloseCommand => new RelayCommand(Close);
+        public RelayCommand PaySlipsCommand => new RelayCommand(PaySlips);
+        #endregion
+
+        #region Events
+        private void PaySlips()
+        {
+            NavigationService.NavigateTo(ViewModelLocator.PaySlipsList);
         }
 
         private async void Close()
@@ -48,7 +64,7 @@ namespace Payroll.ViewModels
             Helper.AuthenticationNeeded = true;
 
             Settings.IsLoggedIn = false;
-            Settings.EntryID =0;
+            Settings.EntryID = 0;
             Settings.Name = String.Empty;
             Settings.Email = String.Empty;
             Settings.PhoneNumber = String.Empty;
@@ -59,6 +75,7 @@ namespace Payroll.ViewModels
             Contact.IsVarified = false;
             await new ContactsService().UpdateContact(Contact);
             NavigationService.GoBack();
-        }
+        } 
+        #endregion
     }
 }

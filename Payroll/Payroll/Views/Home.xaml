@@ -6,27 +6,32 @@
              Title="Payroll App">
   
     <ContentPage.Content>
-        <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand" IsVisible="{Binding LayoutVisibility}">
-            <Grid HeightRequest="60" Margin="5,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="50"/>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="user.png" Margin="10">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer ></TapGestureRecognizer>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Label Grid.Column="1" Text="Dashboard" HorizontalOptions="CenterAndExpand"
-                       VerticalOptions="CenterAndExpand" TextColor="MediumBlue" FontSize="Medium"/>
-                <Image Grid.Column="2" Source="logout.png" Margin="10">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer ></TapGestureRecognizer>
-                    </Image.GestureRecognizers>
-                </Image>
+        <StackLayout  VerticalOptions="FillAndExpand" IsVisible="{Binding LayoutVisibility}" Spacing="1">
+            <customControls:GradientStackLayout HorizontalOptions="FillAndExpand"
+                StartColor="{StaticResource PrimaryBlue}"
+                EndColor="{StaticResource SecondaryBlue}"  >
+                <Grid HeightRequest="60" Margin="5,0,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="user.png" Margin="10">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer ></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Grid.Column="1" Text="Dashboard" HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand" TextColor="White" FontSize="Large" FontAttributes="Bold"/>
+                    <Image Grid.Column="2" Source="logout.png" Margin="10">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CloseCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
 
-            </Grid>
+                </Grid>
+            </customControls:GradientStackLayout>
+          
             <Grid BackgroundColor="White" Margin="4" RowSpacing="1" ColumnSpacing="1" VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
@@ -45,8 +50,11 @@
                                HeightRequest="60" Aspect="AspectFit"
                                Margin="0,5"/>
                         <Label Text="PaySlips"  HorizontalOptions="CenterAndExpand"
-                               TextColor="White"/>
+                               TextColor="White" FontAttributes="Bold" FontSize="Medium"/>
                     </StackLayout>
+                    <customControls:GradientStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PaySlipsCommand}"/>
+                    </customControls:GradientStackLayout.GestureRecognizers>
                 </customControls:GradientStackLayout>
 
                 <customControls:GradientStackLayout Grid.Row="0" Grid.Column="1" 
