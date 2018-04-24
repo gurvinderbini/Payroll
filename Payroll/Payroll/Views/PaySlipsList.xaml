@@ -20,7 +20,6 @@
                                 <Image Grid.Column="0" Source="user.png" Margin="10"/>
                                 <Label Grid.Column="1"  TextColor="MediumBlue" Text="{Binding Month}" VerticalOptions="CenterAndExpand"></Label>
                                 <Label Grid.Column="2"  TextColor="MediumBlue" Text="{Binding Year}"  VerticalOptions="CenterAndExpand"></Label>
-
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

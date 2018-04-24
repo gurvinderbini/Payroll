@@ -4,6 +4,7 @@ using System.Linq;
 using Firebase.Core;
 using FormsPinView.iOS;
 using Foundation;
+using Syncfusion.SfPicker.XForms.iOS;
 using Syncfusion.XForms.iOS.PopupLayout;
 using UIKit;
 
@@ -28,6 +29,9 @@ namespace Payroll.iOS
 
             SfPopupLayoutRenderer.Init();
             PinItemViewRenderer.Init();
+
+
+            SfPickerRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

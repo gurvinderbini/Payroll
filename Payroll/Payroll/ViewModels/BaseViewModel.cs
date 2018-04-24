@@ -41,7 +41,11 @@ namespace Payroll.ViewModels
 
         #endregion
 
-      
+        public GalaSoft.MvvmLight.Command.RelayCommand BackCommand => new GalaSoft.MvvmLight.Command.RelayCommand(Back);
 
+        private void Back()
+        {
+            NavigationService.GoBack();
+        }
     }
 }

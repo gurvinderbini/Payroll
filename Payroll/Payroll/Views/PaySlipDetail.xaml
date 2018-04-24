@@ -2,16 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControls="clr-namespace:Payroll.CustomControls;assembly=Payroll"
+             xmlns:xForms="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
              x:Class="Payroll.Views.PaySlipDetail"
-             Title="PaySlip Detail"
-             BackgroundColor="#FFFFFF">
+             Title="PaySlip Detail">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <customControls:GradientStackLayout HorizontalOptions="FillAndExpand"
+            <customControls:GradientStackLayout HorizontalOptions="FillAndExpand" 
                                                 StartColor="{StaticResource PrimaryBlue}"
                                                 EndColor="{StaticResource SecondaryBlue}"  >
                 <Grid HeightRequest="60" Margin="5,0,5,0">
@@ -28,17 +28,34 @@
                     <Label Grid.Column="1" Text="Play Slip" HorizontalOptions="CenterAndExpand"
                            VerticalOptions="CenterAndExpand" TextColor="White"
                            FontSize="Large" FontAttributes="Bold"/>
+                    <!--<Image Grid.Column="2" Source="calendar_icon.png" Margin="10">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectPickerCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>-->
                 </Grid>
             </customControls:GradientStackLayout>
             <ScrollView Grid.Row="1">
                 <StackLayout>
-                    <!--<Image Source="payslip_detail_top.png" Aspect="AspectFit" HorizontalOptions="CenterAndExpand"/>
-                    <Image Source="payslip_detail_bottom.png" Aspect="AspectFit" HorizontalOptions="FillAndExpand"/>-->
-
+                    <Frame HasShadow="True" Margin="10">
+                        <Grid Margin="-8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Picker Grid.Column="0" ItemsSource="{Binding MonthsList}" SelectedItem="{Binding SelectedMonth}"
+                                    Title=" Month"/>
+                            <Picker Grid.Column="1" ItemsSource="{Binding YearsList}" SelectedItem="{Binding SelectedYear}"
+                                    Title=" Year"/>
+                            <Button Grid.Column="2" Text="Search" TextColor="White" 
+                                    BackgroundColor="{StaticResource PrimaryBlue}" CornerRadius="15"
+                                    Command="{Binding SearchCommand}"/>
+                        </Grid>
+                    </Frame>
+                  
                 </StackLayout>
             </ScrollView>
         </Grid>
-   
-
     </ContentPage.Content>
 </ContentPage>
