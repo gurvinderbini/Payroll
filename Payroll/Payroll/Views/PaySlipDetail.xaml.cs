@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using Payroll.Model;
 using Payroll.ViewModels;
 using Xamarin.Forms;
@@ -21,6 +22,13 @@ namespace Payroll.Views
             NavigationPage.SetHasNavigationBar(this,false);
             _viewModel.Initilize();
 		}
-	  
-    }
+
+	    private void WebView_OnNavigated(object sender, WebNavigatedEventArgs e)
+	    {
+	        if (e.Result == WebNavigationResult.Success)
+	        {
+                UserDialogs.Instance.HideLoading();
+	        }
+	    }
+	}
 }

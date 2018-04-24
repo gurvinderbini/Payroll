@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Acr.UserDialogs;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 
@@ -32,7 +33,17 @@ namespace Payroll.ViewModels
             }
         }
 
+        private string _pdfUrl = "https://www.google.com";
 
+        public string PdfUrl
+        {
+            get => _pdfUrl;
+            set
+            {
+                _pdfUrl = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public ObservableCollection<string> MonthsList => new ObservableCollection<string>()
         {
@@ -64,9 +75,12 @@ namespace Payroll.ViewModels
             PickerVisibilty = true;
         }
 
-        private void Search()
+        private  void Search()
         {
-
+            UserDialogs.Instance.ShowLoading();
+            PdfUrl =
+                "https://payroll.erpcrebit.com/Content/ClientAttach/PayHistory/payroll/3541/2018/3/PaySlip_3541_2018_3.pdf";
+            UserDialogs.Instance.HideLoading();
         }
         #endregion
 
@@ -81,10 +95,10 @@ namespace Payroll.ViewModels
             }
         }
 
-        private void Back()
-        {
-            NavigationService.GoBack();
-        }
+        //private void Back()
+        //{
+        //    NavigationService.GoBack();
+        //}
         #endregion
     }
 }

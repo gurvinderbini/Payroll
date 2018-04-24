@@ -7,8 +7,16 @@ namespace Payroll.ViewModels
 {
     public class ProfileViewModel:BaseViewModel
     {
+        #region CTOR
         public ProfileViewModel(INavigationService navigationService) : base(navigationService)
         {
         }
+        #endregion
+
+        #region Properties
+
+      
+
+        #endregion
     }
 }

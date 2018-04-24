@@ -35,8 +35,8 @@
                     </Image>-->
                 </Grid>
             </customControls:GradientStackLayout>
-            <ScrollView Grid.Row="1">
-                <StackLayout>
+           
+                <StackLayout Grid.Row="1">
                     <Frame HasShadow="True" Margin="10">
                         <Grid Margin="-8">
                             <Grid.ColumnDefinitions>
@@ -53,9 +53,12 @@
                                     Command="{Binding SearchCommand}"/>
                         </Grid>
                     </Frame>
-                  
+                    <WebView Source="{Binding PdfUrl}" 
+                             HorizontalOptions="FillAndExpand" 
+                             VerticalOptions="FillAndExpand" Navigated="WebView_OnNavigated"></WebView>
+
                 </StackLayout>
-            </ScrollView>
+           
         </Grid>
     </ContentPage.Content>
 </ContentPage>
