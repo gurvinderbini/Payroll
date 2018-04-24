@@ -35,7 +35,7 @@ namespace Payroll
             if (!SimpleIoc.Default.IsRegistered<INavigationService>())
                 SimpleIoc.Default.Register<INavigationService>(() => _navigationService);
 
-            var firstPage = new NavigationPage(new MainPage());
+            var firstPage = new NavigationPage(new PaySlipDetail());
             _navigationService.Initialize(firstPage);
             MainPage = firstPage;
         }

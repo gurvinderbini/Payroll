@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControls="clr-namespace:Payroll.CustomControls;assembly=Payroll"
-             xmlns:xForms="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+             xmlns:xForms="clr-namespace:Syncfusion.SfPdfViewer.XForms;assembly=Syncfusion.SfPdfViewer.XForms"
              x:Class="Payroll.Views.PaySlipDetail"
              Title="PaySlip Detail">
     <ContentPage.Content>
@@ -28,37 +28,41 @@
                     <Label Grid.Column="1" Text="Play Slip" HorizontalOptions="CenterAndExpand"
                            VerticalOptions="CenterAndExpand" TextColor="White"
                            FontSize="Large" FontAttributes="Bold"/>
-                    <!--<Image Grid.Column="2" Source="calendar_icon.png" Margin="10">
+                    <Image Grid.Column="2" Source="calendar_icon.png" Margin="10">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SelectPickerCommand}"/>
+                            <TapGestureRecognizer Command="{Binding SelectPickerCommand}"
+                                                  Tapped="TapGestureRecognizer_OnTapped"/>
                         </Image.GestureRecognizers>
-                    </Image>-->
+                    </Image>
                 </Grid>
             </customControls:GradientStackLayout>
-           
-                <StackLayout Grid.Row="1">
-                    <Frame HasShadow="True" Margin="10">
-                        <Grid Margin="-8">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-                            <Picker Grid.Column="0" ItemsSource="{Binding MonthsList}" SelectedItem="{Binding SelectedMonth}"
+
+            <StackLayout Grid.Row="1">
+
+                <Frame HasShadow="True" Margin="10">
+                    <Grid Margin="-8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Picker Grid.Column="0" ItemsSource="{Binding MonthsList}" SelectedItem="{Binding SelectedMonth}"
                                     Title=" Month"/>
-                            <Picker Grid.Column="1" ItemsSource="{Binding YearsList}" SelectedItem="{Binding SelectedYear}"
+                        <Picker Grid.Column="1" ItemsSource="{Binding YearsList}" SelectedItem="{Binding SelectedYear}"
                                     Title=" Year"/>
-                            <Button Grid.Column="2" Text="Search" TextColor="White" 
+                        <Button Grid.Column="2" Text="Search" TextColor="White" 
                                     BackgroundColor="{StaticResource PrimaryBlue}" CornerRadius="15"
                                     Command="{Binding SearchCommand}"/>
-                        </Grid>
-                    </Frame>
-                    <WebView Source="{Binding PdfUrl}" 
-                             HorizontalOptions="FillAndExpand" 
-                             VerticalOptions="FillAndExpand" Navigated="WebView_OnNavigated"></WebView>
+                    </Grid>
+                </Frame>
 
-                </StackLayout>
-           
+                <ScrollView>
+                    <xForms:SfPdfViewer x:Name="pdfViewerControl" Margin="0,-40,0,0"
+                                        InputFileStream="{Binding PdfDocumentStream}"
+                                        />
+                </ScrollView>
+            </StackLayout>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

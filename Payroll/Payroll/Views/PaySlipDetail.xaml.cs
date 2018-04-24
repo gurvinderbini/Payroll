@@ -21,6 +21,7 @@ namespace Payroll.Views
 		    BindingContext = _viewModel;
             NavigationPage.SetHasNavigationBar(this,false);
             _viewModel.Initilize();
+		 //pdfViewerControl.ZoomPercentage=0.1f;
 		}
 
 	    private void WebView_OnNavigated(object sender, WebNavigatedEventArgs e)
@@ -29,6 +30,11 @@ namespace Payroll.Views
 	        {
                 UserDialogs.Instance.HideLoading();
 	        }
+	    }
+
+	    private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+	    {
+	        pdfViewerControl.SaveDocument();
 	    }
 	}
 }

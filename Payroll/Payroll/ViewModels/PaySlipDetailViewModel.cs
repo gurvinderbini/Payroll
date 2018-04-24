@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using Acr.UserDialogs;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using Payroll.Extensions;
 
 namespace Payroll.ViewModels
 {
@@ -33,14 +36,24 @@ namespace Payroll.ViewModels
             }
         }
 
-        private string _pdfUrl = "https://www.google.com";
+        //private string _pdfUrl = "https://www.google.com";
 
-        public string PdfUrl
+        //public string PdfUrl
+        //{
+        //    get => _pdfUrl;
+        //    set
+        //    {
+        //        _pdfUrl = value;
+        //        RaisePropertyChanged();
+        //    }
+        //}
+        private Stream _pdfDocumentStream;
+        public Stream PdfDocumentStream
         {
-            get => _pdfUrl;
+            get => _pdfDocumentStream;
             set
             {
-                _pdfUrl = value;
+                _pdfDocumentStream = value;
                 RaisePropertyChanged();
             }
         }
@@ -72,14 +85,15 @@ namespace Payroll.ViewModels
 
         private void SelectPicker()
         {
-            PickerVisibilty = true;
+           // PickerVisibilty = true;
         }
 
-        private  void Search()
+        private async void Search()
         {
             UserDialogs.Instance.ShowLoading();
-            PdfUrl =
-                "https://payroll.erpcrebit.com/Content/ClientAttach/PayHistory/payroll/3541/2018/3/PaySlip_3541_2018_3.pdf";
+            var url= "https://payroll.erpcrebit.com/Content/ClientAttach/PayHistory/payroll/3541/2018/3/PaySlip_3541_2018_3.pdf";
+            PdfDocumentStream =await Task.Run(()=> url.ConvertToStream());
+                
             UserDialogs.Instance.HideLoading();
         }
         #endregion
