@@ -45,6 +45,8 @@ namespace Payroll.Droid
             CrossFingerprint.SetCurrentActivityResolver(() => this);
             PinItemViewRenderer.Init();
             GetPhoneNumber();
+            // IMPORTANT: Initialize XFGloss AFTER calling LoadApplication on the Android platform
+            XFGloss.Droid.Library.Init(this, bundle);
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)

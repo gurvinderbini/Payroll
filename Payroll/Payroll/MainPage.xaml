@@ -1,12 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xfGloss="clr-namespace:XFGloss;assembly=XFGloss"
              x:Class="Payroll.MainPage"
              Title="Login">
-   
+    <xfGloss:ContentPageGloss.BackgroundGradient>
+        <xfGloss:Gradient Rotation="150">
+            <xfGloss:GradientStep StepColor="{StaticResource PrimaryBlue}" StepPercentage="0" />
+            <xfGloss:GradientStep StepColor="{StaticResource SecondaryBlue}" StepPercentage="1" />
+        </xfGloss:Gradient>
+    </xfGloss:ContentPageGloss.BackgroundGradient>
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <Image Source="login_background.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-               Aspect="AspectFill"/>
+     
         <StackLayout Orientation="Vertical" >
             <Image Source="payroll.png" HorizontalOptions="FillAndExpand"
                    VerticalOptions="CenterAndExpand" Margin="20,60,20,0" Aspect="AspectFit" Opacity=".9"></Image>
@@ -16,8 +21,6 @@
                     Margin="30,30,30,60" Opacity=".9"></Button>
         </StackLayout>
     </Grid>
-  
-
 </ContentPage>
 
 

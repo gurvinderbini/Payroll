@@ -12,6 +12,7 @@ using Payroll.ViewModels;
 using PCLStorage;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Syncfusion.SfPdfViewer.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -27,15 +28,7 @@ namespace Payroll.Views
             BindingContext = _viewModel;
             NavigationPage.SetHasNavigationBar(this, false);
             _viewModel.Initilize();
-            //pdfViewerControl.ZoomPercentage=0.1f;
-        }
-
-        private void WebView_OnNavigated(object sender, WebNavigatedEventArgs e)
-        {
-            if (e.Result == WebNavigationResult.Success)
-            {
-                UserDialogs.Instance.HideLoading();
-            }
+            //pdfViewerControl.Toolbar=new Toolbar(){Enabled = false};
         }
 
         private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
@@ -51,7 +44,7 @@ namespace Payroll.Views
             }
             else
             {
-              var perResult=  await UserDialogs.Instance.ConfirmAsync("Do not have required permissions to sae payslip",okText:"Allow Permissions",cancelText:"cancel");
+                var perResult = await UserDialogs.Instance.ConfirmAsync("Do not have required permissions to sae payslip", okText: "Allow Permissions", cancelText: "cancel");
                 if (perResult)
                 {
                     var result1 = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
@@ -62,18 +55,6 @@ namespace Payroll.Views
                     }
                 }
             }
-            //   var file=await filename.CreatePDf(stream);
-
-            //  IFolder folder;
-            //var result = await Helper.PdfFolder.IsFolderExistAsync();
-            //if (!result)
-            //{
-            //    folder= await Helper.PdfFolder.CreateFolder();
-            //}
-            //else
-            //{
-            //    Helper.PdfFolder.ge
-            //}
         }
     }
 }

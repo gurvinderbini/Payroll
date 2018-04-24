@@ -33,6 +33,9 @@ namespace Payroll.iOS
 
             new SfPdfDocumentViewRenderer();
             SfPickerRenderer.Init();
+
+            /********** ADD THIS CALL TO INITIALIZE XFGloss *********/
+            XFGloss.iOS.Library.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

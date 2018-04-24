@@ -28,9 +28,9 @@
                     <Label Grid.Column="1" Text="Play Slip" HorizontalOptions="CenterAndExpand"
                            VerticalOptions="CenterAndExpand" TextColor="White"
                            FontSize="Large" FontAttributes="Bold"/>
-                    <Image Grid.Column="2" Source="calendar_icon.png" Margin="10" IsVisible="{Binding SaveVisibilty}">
+                    <Image Grid.Column="2" Source="save.png" Margin="10" IsVisible="{Binding SaveVisibilty}">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SelectPickerCommand}"
+                            <TapGestureRecognizer Command="{Binding SaveCommand}"
                                                   Tapped="TapGestureRecognizer_OnTapped"/>
                         </Image.GestureRecognizers>
                     </Image>
@@ -55,12 +55,12 @@
                                     Command="{Binding SearchCommand}"/>
                     </Grid>
                 </Frame>
-
-                <ScrollView>
-                    <xForms:SfPdfViewer x:Name="pdfViewerControl" Margin="0,-40,0,0"
-                                        InputFileStream="{Binding PdfDocumentStream}"
-                                        />
-                </ScrollView>
+                <xForms:SfPdfViewer x:Name="pdfViewerControl" Margin="0,-40,0,0" 
+                                    InputFileStream="{Binding PdfDocumentStream}"/>
+                <!--<ScrollView>
+                    <xForms:SfPdfViewer x:Name="pdfViewerControl" Margin="0,-40,0,0" 
+                                        InputFileStream="{Binding PdfDocumentStream}"/>
+                </ScrollView>-->
             </StackLayout>
 
         </Grid>

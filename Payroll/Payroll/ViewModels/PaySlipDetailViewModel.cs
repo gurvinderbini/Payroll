@@ -18,27 +18,17 @@ namespace Payroll.ViewModels
         #region CTOR
         public PaySlipDetailViewModel(INavigationService navigationService) : base(navigationService)
         {
+            for (var i = 2000; i < 2019; i++)
+            {
+                YearsList.Add(i.ToString());
+            }
 
-           
         }
 
         #endregion
 
         #region Properties
-
-        //private bool _pickerVisibilty;
-
-        //public bool PickerVisibilty
-        //{
-        //    get => _pickerVisibilty;
-        //    set
-        //    {
-        //        _pickerVisibilty = value;
-        //        RaisePropertyChanged();
-        //    }
-        //}
-
-        private string _selectedYear = "2018";
+        private string _selectedYear = String.Empty;
 
         public string SelectedYear
         {
@@ -49,7 +39,7 @@ namespace Payroll.ViewModels
                 RaisePropertyChanged();
             }
         }
-        private string _selectedMonth = "Jan";
+        private string _selectedMonth = String.Empty;
 
         public string SelectedMonth
         {
@@ -67,14 +57,7 @@ namespace Payroll.ViewModels
             set
             {
                 _pdfDocumentStream = value;
-                if (_pdfDocumentStream != null)
-                {
-                    SaveVisibilty = true;
-                }
-                else
-                {
-                    SaveVisibilty = false;
-                }
+                SaveVisibilty = _pdfDocumentStream != null;
                 RaisePropertyChanged();
             }
         }
@@ -111,13 +94,13 @@ namespace Payroll.ViewModels
         #endregion
 
         #region Commands
-        // 
-        public RelayCommand SelectPickerCommand => new RelayCommand(SelectPicker);
+     
+        public RelayCommand SaveCommand => new RelayCommand(Save);
         public RelayCommand SearchCommand=>new RelayCommand(Search);
 
-        private void SelectPicker()
+        private void Save()
         {
-           // PickerVisibilty = true;
+           
         }
 
         private async void Search()
@@ -128,23 +111,22 @@ namespace Payroll.ViewModels
                 
             UserDialogs.Instance.HideLoading();
         }
+
         #endregion
 
         #region Events
 
         public void Initilize()
         {
-            YearsList.Clear();
-            for (int i = 2000; i < 2019; i++)
+            try
             {
-                YearsList.Add(i.ToString());
+                //PdfDocumentStream = Stream.Null;
+                //SelectedMonth = SelectedYear = String.Empty;
             }
+            catch (Exception e)
+            {  }
+         
         }
-
-        //private void Back()
-        //{
-        //    NavigationService.GoBack();
-        //}
         #endregion
     }
 }
