@@ -3,27 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              x:Class="Payroll.DataTemplates.PhoneNumberRgPopUp">
-    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
-        <StackLayout BackgroundColor="White" Padding="0, 10, 0, 0">
-            <Label Text="Your Details" TextColor="Gray" FontSize="20" HorizontalOptions="Center"></Label>
-            <StackLayout HorizontalOptions="FillAndExpand" 
-                         VerticalOptions="FillAndExpand">
-                <StackLayout x:Name="PhoneNumberStack">
-                    <Entry x:Name="PhoneNumberEntry" Text="" Placeholder="Enter your phone number" 
-                           Keyboard="Telephone"/>
-                    <Entry x:Name="EmailEntry" Text="" Placeholder="Enter your email" />
+    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20" 
+                 >
+        <Frame HorizontalOptions="CenterAndExpand"   CornerRadius="20" 
+               Padding="20, 20, 20, 20" BackgroundColor="White">
+            <StackLayout HorizontalOptions="CenterAndExpand"  Padding="0, 10, 0, 0" >
+                <Label Text="Enter your Login Details" TextColor="Gray" FontSize="20" FontAttributes="Bold"
+                       HorizontalOptions="Center"></Label>
+                <StackLayout HorizontalOptions="FillAndExpand" 
+                             VerticalOptions="FillAndExpand">
+                    <StackLayout x:Name="PhoneNumberStack">
+                        <Entry x:Name="PhoneNumberEntry" Text="" Placeholder="Enter your phone number" 
+                               Keyboard="Telephone" TextColor="{StaticResource PrimaryBlue}"/>
+                        <Entry x:Name="EmailEntry" Text="" Placeholder="Enter your email" 
+                               TextColor="{StaticResource PrimaryBlue}"/>
 
-                    <Button Text="Submit" TextColor="DodgerBlue" Clicked="Button_OnClicked"></Button>
-                </StackLayout>
-                <!--<StackLayout x:Name="EmailStack">
+                        <Button Text="Submit" TextColor="White" Clicked="Button_OnClicked"
+                                BackgroundColor="{StaticResource PrimaryBlue}" CornerRadius="15"></Button>
+                    </StackLayout>
+                    <!--<StackLayout x:Name="EmailStack">
                     <Label Text="Please Enter your email for logging in"></Label>
                     <Entry x:Name="EmailEntry" Text=""  />
                     <Button Text="Verify" TextColor="DodgerBlue" Clicked="EmailClick"></Button>
                 </StackLayout>-->
 
+                </StackLayout>
+
             </StackLayout>
-          
-        </StackLayout>
+        </Frame>
+      
     </StackLayout>
 
 </pages:PopupPage>
