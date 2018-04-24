@@ -13,6 +13,8 @@ namespace Payroll.NavigationService
         public const string Home = "Home";
         public const string PaySlipsList = "PaySlipsList";
         public const string PaySlipsDetail = "PaySlipsDetail";
+        public const string Profile = "Profile";
+
 
         public ViewModelLocator()
         {
@@ -21,13 +23,14 @@ namespace Payroll.NavigationService
             SimpleIoc.Default.Register<HomeViewModel>();
             SimpleIoc.Default.Register<PaySlipsListViewModel>();
             SimpleIoc.Default.Register<PaySlipDetailViewModel>();
-
+            SimpleIoc.Default.Register<ProfileViewModel>();
         }
 
         public MainPageViewModel MainPageViewModel => ServiceLocator.Current.GetInstance<MainPageViewModel>();
         public HomeViewModel HomeViewModel => ServiceLocator.Current.GetInstance<HomeViewModel>();
         public PaySlipsListViewModel PaySlipsListViewModel => ServiceLocator.Current.GetInstance<PaySlipsListViewModel>();
         public PaySlipDetailViewModel PaySlipDetailViewModel => ServiceLocator.Current.GetInstance<PaySlipDetailViewModel>();
+        public ProfileViewModel ProfileViewModel => ServiceLocator.Current.GetInstance<ProfileViewModel>();
 
 
     }

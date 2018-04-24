@@ -45,6 +45,9 @@ namespace Payroll.ViewModels
         public RelayCommand ClearAuthenticationCommand => new RelayCommand(ClearAuthentication);
         public RelayCommand CloseCommand => new RelayCommand(Close);
         public RelayCommand PaySlipsCommand => new RelayCommand(PaySlips);
+        public RelayCommand GoToProfileCommand => new RelayCommand(GoToProfile);
+
+      
         #endregion
 
         #region Events
@@ -175,9 +178,15 @@ namespace Payroll.ViewModels
             Contact.IsVarified = false;
             await new ContactsService().UpdateContact(Contact);
             NavigationService.GoBack();
-        } 
+        }
+
+        private void GoToProfile()
+        {
+            NavigationService.NavigateTo(ViewModelLocator.Profile);
+        }
+
         #endregion
 
-     
+
     }
 }

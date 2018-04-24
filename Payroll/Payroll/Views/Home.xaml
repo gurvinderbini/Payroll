@@ -6,7 +6,8 @@
              Title="Payroll App">
   
     <ContentPage.Content>
-        <StackLayout  VerticalOptions="FillAndExpand" IsVisible="{Binding LayoutVisibility}" Spacing="1">
+        <StackLayout  VerticalOptions="FillAndExpand" IsVisible="{Binding LayoutVisibility}" 
+                      Spacing="1">
             <customControls:GradientStackLayout HorizontalOptions="FillAndExpand"
                 StartColor="{StaticResource PrimaryBlue}"
                 EndColor="{StaticResource SecondaryBlue}"  >
@@ -18,11 +19,12 @@
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="user.png" Margin="10">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer ></TapGestureRecognizer>
+                            <TapGestureRecognizer Command="{Binding GoToProfileCommand}"/>
                         </Image.GestureRecognizers>
                     </Image>
                     <Label Grid.Column="1" Text="Dashboard" HorizontalOptions="CenterAndExpand"
-                           VerticalOptions="CenterAndExpand" TextColor="White" FontSize="Large" FontAttributes="Bold"/>
+                           VerticalOptions="CenterAndExpand" TextColor="White" FontSize="Large"
+                           FontAttributes="Bold"/>
                     <Image Grid.Column="2" Source="logout.png" Margin="10">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding CloseCommand}"/>
@@ -32,7 +34,8 @@
                 </Grid>
             </customControls:GradientStackLayout>
           
-            <Grid BackgroundColor="White" Margin="4" RowSpacing="1" ColumnSpacing="1" VerticalOptions="FillAndExpand">
+            <Grid BackgroundColor="White" Margin="4" RowSpacing="1" 
+                  ColumnSpacing="1" VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
@@ -68,8 +71,6 @@
                                TextColor="White"/>
                     </StackLayout>
                 </customControls:GradientStackLayout>
-
-
 
                 <customControls:GradientStackLayout Grid.Row="1" Grid.Column="1" 
                                                     StartColor="{StaticResource PrimaryBlue}" 
@@ -127,25 +128,6 @@
             </Grid>
 
         </StackLayout>
-        <!--<Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid  Grid.Row="0" BackgroundColor="WhiteSmoke">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="80"/>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="1"  Text="Payroll App" TextColor="DodgerBlue" HorizontalOptions="CenterAndExpand"
-                       VerticalOptions="CenterAndExpand" FontSize="20" ></Label>
-                <Button Grid.Column="2" Text="Logout" Command="{Binding CloseCommand}" HorizontalOptions="EndAndExpand"
-                        VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" TextColor="IndianRed"
-                        IsVisible="{Binding LayoutVisibility}"></Button>
-            </Grid>
-        
-        </Grid>-->
        
     </ContentPage.Content>
 </ContentPage>

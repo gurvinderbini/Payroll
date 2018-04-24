@@ -4,7 +4,9 @@ using System.Text;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Views;
+using Payroll.Interfaces;
 using Payroll.Services;
+using Xamarin.Forms;
 
 namespace Payroll.ViewModels
 {
@@ -41,11 +43,18 @@ namespace Payroll.ViewModels
 
         #endregion
 
+        #region Commands
         public GalaSoft.MvvmLight.Command.RelayCommand BackCommand => new GalaSoft.MvvmLight.Command.RelayCommand(Back);
 
+        #endregion
+
+        #region Methods
         private void Back()
         {
             NavigationService.GoBack();
         }
+        #endregion
+
+       
     }
 }

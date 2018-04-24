@@ -21,12 +21,6 @@ namespace Payroll.Views
             NavigationPage.SetHasNavigationBar(this,false);
             _viewModel.Initilize();
 		}
-	    //public PaySlipDetail(PaySlipsBO paySlipsBo)
-	    //{
-	    //    InitializeComponent();
-	    //    BindingContext = _viewModel;
-	    //    NavigationPage.SetHasNavigationBar(this, false);
-
-     //   }
+	  
     }
 }
