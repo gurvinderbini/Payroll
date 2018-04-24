@@ -45,12 +45,39 @@ namespace Payroll
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            var result = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
-
-            if (result == PermissionStatus.Denied)
+            try
             {
-                var re = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                var result = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
 
+                if (result == PermissionStatus.Denied)
+                {
+                    await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
+                    if (await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage) !=
+                        PermissionStatus.Granted)
+                    {
+                        await UserDialogs.Instance.AlertAsync("Some storage features may not work appropriately !");
+
+                    }
+                   
+                }
+
+                result = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Phone);
+                if (result == PermissionStatus.Denied)
+                {
+                  await CrossPermissions.Current.RequestPermissionsAsync(Permission.Phone);
+                    if (await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Phone) != PermissionStatus.Granted)
+                    {
+                        await UserDialogs.Instance.AlertAsync("Some features may not work appropriately !");
+                    }
+                    else
+                    {
+                        DependencyService.Get<IGetPhoneNumber>().GetNumber();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                
             }
 
         }

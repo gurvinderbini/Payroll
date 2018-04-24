@@ -56,6 +56,9 @@ namespace Payroll.ViewModels
 
                 UserDialogs.Instance.ShowLoading("Authenticating");
                 //if we cannot retreive the contact
+
+                Helper.AutoRetreivedPhoneNumber=String.Empty; //remove this code
+
                 if (String.IsNullOrEmpty(Helper.AutoRetreivedPhoneNumber))
                 {
                     await PopupNavigation.PushAsync(new PhoneNumberRgPopUp());
