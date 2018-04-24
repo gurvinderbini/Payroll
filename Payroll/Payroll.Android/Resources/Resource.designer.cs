@@ -1690,6 +1690,8 @@ namespace Payroll.Droid
 			global::FormsPinView.Droid.Resource.Styleable.ViewStubCompat_android_id = global::Payroll.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::FormsPinView.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId = global::Payroll.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::FormsPinView.Droid.Resource.Styleable.ViewStubCompat_android_layout = global::Payroll.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::PCLStorage.Resource.String.ApplicationName = global::Payroll.Droid.Resource.String.ApplicationName;
+			global::PCLStorage.Resource.String.Hello = global::Payroll.Droid.Resource.String.Hello;
 			global::Plugin.Fingerprint.Resource.Drawable.fingerprint_white = global::Payroll.Droid.Resource.Drawable.fingerprint_white;
 			global::Plugin.Fingerprint.Resource.Id.fingerprint_btnCancel = global::Payroll.Droid.Resource.Id.fingerprint_btnCancel;
 			global::Plugin.Fingerprint.Resource.Id.fingerprint_btnFallback = global::Payroll.Droid.Resource.Id.fingerprint_btnFallback;
@@ -5874,6 +5876,12 @@ namespace Payroll.Droid
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f080048
+			public const int ApplicationName = 2131230792;
+			
+			// aapt resource value: 0x7f080047
+			public const int Hello = 2131230791;
 			
 			// aapt resource value: 0x7f080017
 			public const int abc_action_bar_home_description = 2131230743;

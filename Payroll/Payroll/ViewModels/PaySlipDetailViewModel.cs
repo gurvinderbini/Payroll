@@ -8,6 +8,8 @@ using Acr.UserDialogs;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using Payroll.Extensions;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 
 namespace Payroll.ViewModels
 {
@@ -24,29 +26,40 @@ namespace Payroll.ViewModels
 
         #region Properties
 
-        private bool _pickerVisibilty;
+        //private bool _pickerVisibilty;
 
-        public bool PickerVisibilty
-        {
-            get => _pickerVisibilty;
-            set
-            {
-                _pickerVisibilty = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        //private string _pdfUrl = "https://www.google.com";
-
-        //public string PdfUrl
+        //public bool PickerVisibilty
         //{
-        //    get => _pdfUrl;
+        //    get => _pickerVisibilty;
         //    set
         //    {
-        //        _pdfUrl = value;
+        //        _pickerVisibilty = value;
         //        RaisePropertyChanged();
         //    }
         //}
+
+        private string _selectedYear = "2018";
+
+        public string SelectedYear
+        {
+            get => _selectedYear;
+            set
+            {
+                _selectedYear = value;
+                RaisePropertyChanged();
+            }
+        }
+        private string _selectedMonth = "Jan";
+
+        public string SelectedMonth
+        {
+            get => _selectedMonth;
+            set
+            {
+                _selectedMonth = value;
+                RaisePropertyChanged();
+            }
+        }
         private Stream _pdfDocumentStream;
         public Stream PdfDocumentStream
         {
@@ -54,6 +67,14 @@ namespace Payroll.ViewModels
             set
             {
                 _pdfDocumentStream = value;
+                if (_pdfDocumentStream != null)
+                {
+                    SaveVisibilty = true;
+                }
+                else
+                {
+                    SaveVisibilty = false;
+                }
                 RaisePropertyChanged();
             }
         }
@@ -76,6 +97,17 @@ namespace Payroll.ViewModels
             }
         }
 
+        private bool _saveVisibilty=false;
+        public bool SaveVisibilty
+        {
+            get => _saveVisibilty;
+            set
+            {
+                _saveVisibilty = value;
+                RaisePropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -90,7 +122,7 @@ namespace Payroll.ViewModels
 
         private async void Search()
         {
-            UserDialogs.Instance.ShowLoading();
+            UserDialogs.Instance.ShowLoading("Generating Payslip ! Please wait");
             var url= "https://payroll.erpcrebit.com/Content/ClientAttach/PayHistory/payroll/3541/2018/3/PaySlip_3541_2018_3.pdf";
             PdfDocumentStream =await Task.Run(()=> url.ConvertToStream());
                 

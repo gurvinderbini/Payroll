@@ -15,8 +15,11 @@ namespace Payroll.Helpers
 
         public static string AutoRetreivedPhoneNumber = String.Empty;
 
+        public static string PdfFolder = "PayrollPDF";
 
-       
+
+
+
 
     }
 }

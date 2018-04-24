@@ -19,6 +19,8 @@ using Payroll.Views;
 using Plugin.DeviceInfo;
 using Plugin.Fingerprint.Abstractions;
 using Plugin.Messaging;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using Rg.Plugins.Popup.Services;
 using Syncfusion.XForms.PopupLayout;
 using Xamarin.Forms;
@@ -39,69 +41,18 @@ namespace Payroll
             BindingContext = _viewModel;
             NavigationPage.SetHasNavigationBar(this, false);
         }
-     
-        //protected override  void OnAppearing()
-        //{
-        //    base.OnAppearing();
-        //}
 
-        //private async void Button_OnClicked(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            var result = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
 
-        //        Helper.IsFingerPrintAvailable = await Plugin.Fingerprint.CrossFingerprint.Current.IsAvailableAsync();
+            if (result == PermissionStatus.Denied)
+            {
+                var re = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
 
-        //        //if user is already logged in
-        //        if (Settings.IsLoggedIn)
-        //        {
-        //            var contact = new Contact();
-        //            Settings.IsLoggedIn = true;
-        //            contact.EntryID = Settings.EntryID;
-        //            contact.Name = Settings.Name;
-        //            contact.Email = Settings.Email;
-        //            contact.PhoneNumber = Settings.PhoneNumber;
-        //            contact.AccountNumber = Settings.AccountNumber;
-        //            contact.DeviceID = Settings.DeviceID;
-        //            contact.IsVarified = Settings.IsVarified;
-        //            _viewModel.Navigate(contact);
-        //            return;
-        //        }
+            }
 
-        //        UserDialogs.Instance.ShowLoading("Authenticating");
-        //        //if we cannot retreive the contact
-        //        if (String.IsNullOrEmpty(Helper.AutoRetreivedPhoneNumber))
-        //        {
-        //            await PopupNavigation.PushAsync(new PhoneNumberRgPopUp());
-        //            UserDialogs.Instance.HideLoading();
-        //            return;
-        //        }
-
-        //        //if we retreive the contact and check whether it is verfied or not
-        //        _viewModel.Contact = await new ContactsService().ValidateContact(CrossDevice.Device.DeviceId, Helper.AutoRetreivedPhoneNumber);
-        //        if (_viewModel.Contact != null)
-        //        {
-        //            //if yes than it is navigated
-        //            if (_viewModel.Contact.IsVarified)
-        //            {
-        //                _viewModel.Navigate(_viewModel.Contact);
-        //            }
-        //            else
-        //            { //otherwise verfied popup will open
-        //                await PopupNavigation.PushAsync(new CredentialsRgPopUp(_viewModel.Contact));
-        //            }
-        //        }
-        //        else
-        //        {
-        //            await UserDialogs.Instance.AlertAsync("You are not a registered user !");
-        //            DependencyService.Get<ICloseApplication>().CloseApp(); ;
-        //        }
-        //        UserDialogs.Instance.HideLoading();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        UserDialogs.Instance.HideLoading();
-        //    }
-        //}
+        }
     }
 }

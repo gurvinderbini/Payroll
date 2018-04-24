@@ -28,7 +28,7 @@
                     <Label Grid.Column="1" Text="Play Slip" HorizontalOptions="CenterAndExpand"
                            VerticalOptions="CenterAndExpand" TextColor="White"
                            FontSize="Large" FontAttributes="Bold"/>
-                    <Image Grid.Column="2" Source="calendar_icon.png" Margin="10">
+                    <Image Grid.Column="2" Source="calendar_icon.png" Margin="10" IsVisible="{Binding SaveVisibilty}">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding SelectPickerCommand}"
                                                   Tapped="TapGestureRecognizer_OnTapped"/>

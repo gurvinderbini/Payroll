@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Android;
 using Android.Content;
 using Android.Provider;
+using Android.Support.Design.Widget;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
 using Android.Widget;
@@ -39,7 +40,7 @@ namespace Payroll.Droid
 
             base.OnCreate(bundle);
            UserDialogs.Init(this);
-           // Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
+           Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
             global::Xamarin.Forms.Forms.Init(this, bundle);
             CrossFingerprint.SetCurrentActivityResolver(() => this);
             PinItemViewRenderer.Init();
@@ -48,12 +49,14 @@ namespace Payroll.Droid
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
         {
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        public  void GetPhoneNumber()
+        public async  void GetPhoneNumber()
         {
             try
             {
+
                 TelephonyManager mTelephonyMgr = (TelephonyManager)GetSystemService(TelephonyService);
                 if(mTelephonyMgr.Line1Number.Equals("15555215554"))return;
                 Helpers.Helper.AutoRetreivedPhoneNumber = mTelephonyMgr.Line1Number;
@@ -64,6 +67,10 @@ namespace Payroll.Droid
             }
           
         }
+
+
+
+     
     }
     
 }
