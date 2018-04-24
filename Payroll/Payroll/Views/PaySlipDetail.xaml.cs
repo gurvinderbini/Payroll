@@ -34,27 +34,7 @@ namespace Payroll.Views
         private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
         {
 
-            var stream = pdfViewerControl.SaveDocument();
-            var filename = _viewModel.SelectedMonth + _viewModel.SelectedYear + "PaySlip.pdf";
-            var fileOperations = DependencyService.Get<IFileOperations>();
-            var result = fileOperations.SavePDF(filename, stream.GetBytes());
-            if (result)
-            {
-                await UserDialogs.Instance.AlertAsync("Pay slip saved in Documents");
-            }
-            else
-            {
-                var perResult = await UserDialogs.Instance.ConfirmAsync("Do not have required permissions to sae payslip", okText: "Allow Permissions", cancelText: "cancel");
-                if (perResult)
-                {
-                    var result1 = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
-
-                    if (result1 == PermissionStatus.Denied)
-                    {
-                        await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
-                    }
-                }
-            }
+          
         }
     }
 }

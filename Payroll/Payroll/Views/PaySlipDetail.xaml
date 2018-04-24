@@ -9,6 +9,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
+               
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <customControls:GradientStackLayout HorizontalOptions="FillAndExpand" 
@@ -28,41 +29,32 @@
                     <Label Grid.Column="1" Text="Play Slip" HorizontalOptions="CenterAndExpand"
                            VerticalOptions="CenterAndExpand" TextColor="White"
                            FontSize="Large" FontAttributes="Bold"/>
-                    <Image Grid.Column="2" Source="save.png" Margin="10" IsVisible="{Binding SaveVisibilty}">
+                    <Image Grid.Column="2" Source="save.png" Margin="10">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SaveCommand}"
-                                                  Tapped="TapGestureRecognizer_OnTapped"/>
+                            <TapGestureRecognizer Command="{Binding DatePickerPopupCommand}"/>
                         </Image.GestureRecognizers>
                     </Image>
                 </Grid>
             </customControls:GradientStackLayout>
 
-            <StackLayout Grid.Row="1">
-
-                <Frame HasShadow="True" Margin="10">
-                    <Grid Margin="-8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        <Picker Grid.Column="0" ItemsSource="{Binding MonthsList}" SelectedItem="{Binding SelectedMonth}"
-                                    Title=" Month"/>
-                        <Picker Grid.Column="1" ItemsSource="{Binding YearsList}" SelectedItem="{Binding SelectedYear}"
-                                    Title=" Year"/>
-                        <Button Grid.Column="2" Text="Search" TextColor="White" 
-                                    BackgroundColor="{StaticResource PrimaryBlue}" CornerRadius="15"
-                                    Command="{Binding SearchCommand}"/>
-                    </Grid>
-                </Frame>
-                <xForms:SfPdfViewer x:Name="pdfViewerControl" Margin="0,-40,0,0" 
+            <!--<Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Picker Grid.Column="0" ItemsSource="{Binding MonthsList}" SelectedItem="{Binding SelectedMonth}"
+                        Title=" Month"/>
+                <Picker Grid.Column="1" ItemsSource="{Binding YearsList}" SelectedItem="{Binding SelectedYear}"
+                        Title=" Year"/>
+                <Button Grid.Column="2" Text="Search" TextColor="White" 
+                        BackgroundColor="{StaticResource PrimaryBlue}" CornerRadius="15"
+                        Command="{Binding SearchCommand}"/>
+            </Grid>-->
+            <ScrollView Grid.Row="1" >
+                <xForms:SfPdfViewer x:Name="pdfViewerControl"  
                                     InputFileStream="{Binding PdfDocumentStream}"/>
-                <!--<ScrollView>
-                    <xForms:SfPdfViewer x:Name="pdfViewerControl" Margin="0,-40,0,0" 
-                                        InputFileStream="{Binding PdfDocumentStream}"/>
-                </ScrollView>-->
-            </StackLayout>
-
-        </Grid>
+            </ScrollView>
+            </Grid>
     </ContentPage.Content>
 </ContentPage>

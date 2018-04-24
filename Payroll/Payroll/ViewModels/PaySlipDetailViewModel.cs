@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 using Acr.UserDialogs;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using Payroll.DataTemplates;
 using Payroll.Extensions;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Rg.Plugins.Popup.Services;
 
 namespace Payroll.ViewModels
 {
@@ -94,10 +96,14 @@ namespace Payroll.ViewModels
         #endregion
 
         #region Commands
-     
+        public RelayCommand DatePickerPopupCommand => new RelayCommand(DatePickerPopup);
         public RelayCommand SaveCommand => new RelayCommand(Save);
         public RelayCommand SearchCommand=>new RelayCommand(Search);
 
+        private void DatePickerPopup()
+        {
+            PopupNavigation.PushAsync(new PaySlipDatePopUp(this));
+        }
         private void Save()
         {
            
