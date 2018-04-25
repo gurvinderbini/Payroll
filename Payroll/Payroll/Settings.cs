@@ -1,9 +1,5 @@
-﻿using Plugin.Settings.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Payroll.Model;
-using Plugin.Settings;
+﻿using Plugin.Settings;
+using Plugin.Settings.Abstractions;
 
 namespace Payroll
 {

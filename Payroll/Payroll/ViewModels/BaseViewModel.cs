@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
-using Payroll.Interfaces;
+
 using Payroll.Services;
-using Xamarin.Forms;
 
 namespace Payroll.ViewModels
 {
@@ -40,12 +35,10 @@ namespace Payroll.ViewModels
 
         #region Services
         public static ContactsService ContactsService => new ContactsService();
-
         #endregion
 
         #region Commands
         public GalaSoft.MvvmLight.Command.RelayCommand BackCommand => new GalaSoft.MvvmLight.Command.RelayCommand(Back);
-
         #endregion
 
         #region Methods
@@ -54,7 +47,5 @@ namespace Payroll.ViewModels
             NavigationService.GoBack();
         }
         #endregion
-
-       
     }
 }

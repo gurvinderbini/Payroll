@@ -116,7 +116,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="NativeImplementations\CloseApplication.cs" />
     <Compile Include="NativeImplementations\FileOperations.cs" />
-    <Compile Include="NativeImplementations\GetPhoneNumber.cs" />
+    <Compile Include="NativeImplementations\RegisterPhoneDetails.cs" />
     <Compile Include="Renderers\GradientStackLayoutRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

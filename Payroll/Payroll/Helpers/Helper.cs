@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace Payroll.Helpers
 {
@@ -15,11 +10,8 @@ namespace Payroll.Helpers
 
         public static string AutoRetreivedPhoneNumber = String.Empty;
 
+        public static string AutoRetreivedDeviceId = String.Empty;
+
         public static string PdfFolder = "PayrollPDF";
-
-
-
-
-
     }
 }

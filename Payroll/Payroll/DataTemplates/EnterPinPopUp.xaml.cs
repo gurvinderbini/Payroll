@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Acr.UserDialogs;
-using FormsPinView.PCL;
+﻿using FormsPinView.PCL;
 using GalaSoft.MvvmLight;
-using Payroll.Interfaces;
 using Payroll.ViewModels;
-using Payroll.Views;
+
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
-using Xamarin.Forms;
+
+using System;
+using System.Linq;
+using System.Diagnostics;
+
 using Xamarin.Forms.Xaml;
 
 namespace Payroll.DataTemplates
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EnterPinPopUp : PopupPage
 	{
 	    public EnterPinPopUp (HomeViewModel home)

@@ -27,7 +27,7 @@
                            FontAttributes="Bold"/>
                     <Image Grid.Column="2" Source="logout.png" Margin="10">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CloseCommand}"/>
+                            <TapGestureRecognizer Command="{Binding ClearAuthenticationCommand}"/>
                         </Image.GestureRecognizers>
                     </Image>
 

@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Acr.UserDialogs;
-using Payroll.Interfaces;
+﻿using Acr.UserDialogs;
+
 using Payroll.Model;
-using Payroll.NavigationService;
+using Payroll.Helpers;
 using Payroll.Services;
 using Payroll.ViewModels;
-using Plugin.DeviceInfo;
+using Payroll.Interfaces;
+using Payroll.NavigationService;
+
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
+
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -36,7 +34,7 @@ namespace Payroll.DataTemplates
             UserDialogs.Instance.ShowLoading("Authenticating");
             try
             {
-                Contact = await new ContactsService().ValidateContact(CrossDevice.Device.DeviceId, PhoneNumberEntry.Text);
+                Contact = await new ContactsService().ValidateContact(Helper.AutoRetreivedDeviceId, PhoneNumberEntry.Text);
                 if (Contact != null && !String.IsNullOrEmpty(Contact.PhoneNumber))
                 {
                     if (string.Compare(Contact.Email.Trim(), EmailEntry.Text.Trim(),true) == 0)

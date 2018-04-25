@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Acr.UserDialogs;
-using Payroll.Interfaces;
+﻿using Acr.UserDialogs;
+
 using Payroll.Model;
-using Payroll.NavigationService;
 using Payroll.Services;
 using Payroll.ViewModels;
+using Payroll.Interfaces;
+using Payroll.NavigationService;
+
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
+
+using System;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

@@ -12,7 +12,5 @@ namespace Payroll.ViewModels
         {
         }
         #endregion
-
-
     }
 }

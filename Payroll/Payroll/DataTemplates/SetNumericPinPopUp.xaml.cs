@@ -2,12 +2,13 @@
 using System.Linq;
 using System.Diagnostics;
 
-using Payroll.Views;
 using FormsPinView.PCL;
 using GalaSoft.MvvmLight;
 using Payroll.ViewModels;
+
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
+
 using Xamarin.Forms.Xaml;
 
 namespace Payroll.DataTemplates

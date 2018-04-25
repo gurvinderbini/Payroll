@@ -9,7 +9,6 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
-               
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <customControls:GradientStackLayout HorizontalOptions="FillAndExpand" 
@@ -29,7 +28,7 @@
                     <Label Grid.Column="1" Text="Play Slip" HorizontalOptions="CenterAndExpand"
                            VerticalOptions="CenterAndExpand" TextColor="White"
                            FontSize="Large" FontAttributes="Bold"/>
-                    <Image Grid.Column="2" Source="save.png" Margin="10">
+                    <Image Grid.Column="2" Source="calendar_icon.png" Margin="10">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding DatePickerPopupCommand}"/>
                         </Image.GestureRecognizers>

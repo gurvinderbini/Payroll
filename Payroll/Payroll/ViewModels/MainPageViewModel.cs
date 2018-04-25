@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Acr.UserDialogs;
+﻿using Acr.UserDialogs;
+
+using Rg.Plugins.Popup.Services;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using Newtonsoft.Json;
-using Payroll.DataTemplates;
+
+using Payroll.Model;
 using Payroll.Helpers;
 using Payroll.Interfaces;
-using Payroll.Model;
+using Payroll.DataTemplates;
 using Payroll.NavigationService;
-using Payroll.Services;
-using Plugin.DeviceInfo;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
-using Rg.Plugins.Popup.Services;
+
+using System;
 using Xamarin.Forms;
 
 namespace Payroll.ViewModels
@@ -67,7 +59,7 @@ namespace Payroll.ViewModels
                 }
 
                 //if we retreive the contact and check whether it is verfied or not
-               Contact = await ContactsService.ValidateContact(CrossDevice.Device.DeviceId, Helper.AutoRetreivedPhoneNumber);
+               Contact = await ContactsService.ValidateContact(Helper.AutoRetreivedDeviceId, Helper.AutoRetreivedPhoneNumber);
                 if (Contact != null)
                 {
                     //if yes than it is navigated

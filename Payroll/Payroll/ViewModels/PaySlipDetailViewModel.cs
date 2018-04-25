@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+
 using Acr.UserDialogs;
-using GalaSoft.MvvmLight.Command;
+
 using GalaSoft.MvvmLight.Views;
-using Payroll.DataTemplates;
+using GalaSoft.MvvmLight.Command;
+
 using Payroll.Extensions;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
+using Payroll.DataTemplates;
+
 using Rg.Plugins.Popup.Services;
 
 namespace Payroll.ViewModels
@@ -121,7 +121,6 @@ namespace Payroll.ViewModels
         #endregion
 
         #region Events
-
         public void Initilize()
         {
             try

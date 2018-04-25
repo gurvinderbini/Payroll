@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Payroll.ViewModels;
 using CommonServiceLocator;
+
 using GalaSoft.MvvmLight.Ioc;
-using Payroll.ViewModels;
 
 namespace Payroll.NavigationService
 {
@@ -14,7 +12,6 @@ namespace Payroll.NavigationService
         public const string PaySlipsList = "PaySlipsList";
         public const string PaySlipsDetail = "PaySlipsDetail";
         public const string Profile = "Profile";
-
 
         public ViewModelLocator()
         {
@@ -31,7 +28,5 @@ namespace Payroll.NavigationService
         public PaySlipsListViewModel PaySlipsListViewModel => ServiceLocator.Current.GetInstance<PaySlipsListViewModel>();
         public PaySlipDetailViewModel PaySlipDetailViewModel => ServiceLocator.Current.GetInstance<PaySlipDetailViewModel>();
         public ProfileViewModel ProfileViewModel => ServiceLocator.Current.GetInstance<ProfileViewModel>();
-
-
     }
 }

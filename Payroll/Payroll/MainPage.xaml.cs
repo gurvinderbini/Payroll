@@ -1,28 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Acr.UserDialogs;
-using Newtonsoft.Json;
-using Payroll.DataTemplates;
-using Payroll.Helpers;
+﻿using Acr.UserDialogs;
+
 using Payroll.Interfaces;
-using Payroll.Model;
-using Payroll.Services;
 using Payroll.ViewModels;
-using Payroll.Views;
-using Plugin.DeviceInfo;
-using Plugin.Fingerprint.Abstractions;
-using Plugin.Messaging;
+
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
-using Rg.Plugins.Popup.Services;
-using Syncfusion.XForms.PopupLayout;
+
+using System;
+
 using Xamarin.Forms;
 
 namespace Payroll
@@ -30,10 +15,6 @@ namespace Payroll
     public partial class MainPage : ContentPage
     {
         private readonly MainPageViewModel _viewModel = App.Locator.MainPageViewModel;
-
-        //private CancellationTokenSource _cancel;
-
-        //private bool _initialized;
 
         public MainPage()
         {
@@ -71,7 +52,7 @@ namespace Payroll
                     }
                     else
                     {
-                        DependencyService.Get<IGetPhoneNumber>().GetNumber();
+                        DependencyService.Get<IRegisterPhoneDetails>().RegisterDetails();
                     }
                 }
             }

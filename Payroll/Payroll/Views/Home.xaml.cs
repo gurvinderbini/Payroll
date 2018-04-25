@@ -1,15 +1,6 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Acr.UserDialogs;
-using Payroll.DataTemplates;
-using Payroll.Helpers;
-using Payroll.Interfaces;
-using Payroll.Model;
+﻿using Payroll.Model;
 using Payroll.ViewModels;
-using Plugin.Fingerprint.Abstractions;
-using Rg.Plugins.Popup.Pages;
-using Rg.Plugins.Popup.Services;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

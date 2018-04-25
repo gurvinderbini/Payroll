@@ -46,8 +46,6 @@ namespace Payroll.ViewModels
         public RelayCommand CloseCommand => new RelayCommand(Close);
         public RelayCommand PaySlipsCommand => new RelayCommand(PaySlips);
         public RelayCommand GoToProfileCommand => new RelayCommand(GoToProfile);
-
-      
         #endregion
 
         #region Events
@@ -186,7 +184,5 @@ namespace Payroll.ViewModels
         }
 
         #endregion
-
-
     }
 }

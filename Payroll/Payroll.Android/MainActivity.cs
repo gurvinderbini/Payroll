@@ -20,6 +20,8 @@ using Android.Support.V4.Content;
 using Android.Widget;
 using FormsPinView.Droid;
 using Java.Lang;
+using Payroll.Droid.NativeImplementations;
+using Payroll.Helpers;
 using Plugin.CurrentActivity;
 using Xamarin.Forms;
 using Exception = System.Exception;
@@ -44,7 +46,8 @@ namespace Payroll.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             CrossFingerprint.SetCurrentActivityResolver(() => this);
             PinItemViewRenderer.Init();
-            GetPhoneNumber();
+
+            new RegisterPhoneDetails().RegisterDetails();
             // IMPORTANT: Initialize XFGloss AFTER calling LoadApplication on the Android platform
             XFGloss.Droid.Library.Init(this, bundle);
             LoadApplication(new App());
@@ -54,25 +57,6 @@ namespace Payroll.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        public async  void GetPhoneNumber()
-        {
-            try
-            {
-
-                TelephonyManager mTelephonyMgr = (TelephonyManager)GetSystemService(TelephonyService);
-                if(mTelephonyMgr.Line1Number.Equals("15555215554"))return;
-                Helpers.Helper.AutoRetreivedPhoneNumber = mTelephonyMgr.Line1Number;
-            }
-            catch (Exception e)
-            {
-              
-            }
-          
-        }
-
-
-
-     
     }
     
 }
