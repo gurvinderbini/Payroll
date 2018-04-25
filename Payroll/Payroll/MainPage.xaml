@@ -10,15 +10,16 @@
             <xfGloss:GradientStep StepColor="{StaticResource SecondaryBlue}" StepPercentage="1" />
         </xfGloss:Gradient>
     </xfGloss:ContentPageGloss.BackgroundGradient>
+
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-     
         <StackLayout Orientation="Vertical" >
             <Image Source="payroll.png" HorizontalOptions="FillAndExpand"
-                   VerticalOptions="CenterAndExpand" Margin="20,60,20,0" Aspect="AspectFit" Opacity=".9"></Image>
-            <Button TextColor="{StaticResource PrimaryBlue}"  BackgroundColor="White" Text="Login" FontSize="20"
-                   Command="{Binding LoginCommand}" VerticalOptions="EndAndExpand" 
-                    HorizontalOptions="FillAndExpand" CornerRadius="20"
-                    Margin="30,30,30,60" Opacity=".9"></Button>
+                   VerticalOptions="CenterAndExpand" Margin="20,60,20,0" 
+                   Aspect="AspectFit" Opacity=".9"></Image>
+            <Button TextColor="{StaticResource PrimaryBlue}"  BackgroundColor="White" 
+                    Text="Login" FontSize="20" Command="{Binding LoginCommand}" 
+                    VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" 
+                    CornerRadius="20" Margin="30,30,30,60" Opacity=".9"/>
         </StackLayout>
     </Grid>
 </ContentPage>

@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Popups\**" />
+    <EmbeddedResource Remove="Popups\**" />
+    <None Remove="Popups\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Acr.DeviceInfo" Version="6.1.0" />
     <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
     <PackageReference Include="Ansuria.XFGloss" Version="1.1.3" />

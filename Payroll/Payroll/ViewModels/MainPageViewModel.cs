@@ -25,7 +25,7 @@ namespace Payroll.ViewModels
         #endregion
 
         #region Properties
-        public Contact Contact { get; set; }
+        public ContactBO Contact { get; set; }
         #endregion
 
         #region Commands
@@ -43,7 +43,7 @@ namespace Payroll.ViewModels
                 //if user is already logged in
                 if (Settings.IsLoggedIn)
                 {
-                    var contact = new Contact();
+                    var contact = new ContactBO();
                     Settings.IsLoggedIn = true;
                     contact.EntryID = Settings.EntryID;
                     contact.Name = Settings.Name;
@@ -59,34 +59,7 @@ namespace Payroll.ViewModels
                 UserDialogs.Instance.ShowLoading("Authenticating");
                 //if we cannot retreive the contact
 
-                Helper.AutoRetreivedPhoneNumber = String.Empty; //remove this code
-
-                if (String.IsNullOrEmpty(Helper.AutoRetreivedPhoneNumber))
-                {
-                    await PopupNavigation.PushAsync(new PhoneNumberRgPopUp());
-                    UserDialogs.Instance.HideLoading();
-                    return;
-                }
-
-                //if we retreive the contact and check whether it is verfied or not
-                Contact = await ContactsService.ValidateContact(Helper.AutoRetreivedDeviceId, Helper.AutoRetreivedPhoneNumber);
-                if (Contact != null)
-                {
-                    //if yes than it is navigated
-                    if (Contact.IsVarified)
-                    {
-                        Navigate(Contact);
-                    }
-                    else
-                    { //otherwise verfied popup will open
-                        await PopupNavigation.PushAsync(new CredentialsRgPopUp(Contact));
-                    }
-                }
-                else
-                {
-                    await UserDialogs.Instance.AlertAsync("You are not a registered user !");
-                    DependencyService.Get<ICloseApplication>().CloseApp(); ;
-                }
+                await PopupNavigation.PushAsync(new PhoneNumberRgPopUp());
                 UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
@@ -95,10 +68,31 @@ namespace Payroll.ViewModels
             }
         }
 
-        public void Navigate(Contact contact)
+        public void Navigate(ContactBO contact)
         {
             NavigationService.NavigateTo(ViewModelLocator.Home, contact);
         }
         #endregion
+
+
+        ////if we retreive the contact and check whether it is verfied or not
+        //Contact = await ContactsService.ValidateContact(Helper.AutoRetreivedDeviceId, Helper.AutoRetreivedPhoneNumber,"");
+        //    if (Contact != null)
+        //{
+        //    //if yes than it is navigated
+        //    if (Contact.IsVarified)
+        //    {
+        //        Navigate(Contact);
+        //    }
+        //    else
+        //    { //otherwise verfied popup will open
+        //        await PopupNavigation.PushAsync(new CredentialsRgPopUp(Contact));
+        //    }
+        //}
+        //else
+        //{
+        //    await UserDialogs.Instance.AlertAsync("You are not a registered user !");
+        //    DependencyService.Get<ICloseApplication>().CloseApp(); ;
+        //}
     }
 }

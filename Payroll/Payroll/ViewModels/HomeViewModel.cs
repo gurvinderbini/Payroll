@@ -27,14 +27,26 @@ namespace Payroll.ViewModels
 
         #region Observable Properties
 
-        private Contact _contact;
+        private ContactBO _contact;
 
-        public Contact Contact
+        public ContactBO Contact
         {
             get => _contact;
             set
             {
                 _contact = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private UserDeviceBO _userDevice;
+
+        public UserDeviceBO UserDevice
+        {
+            get => _userDevice;
+            set
+            {
+                _userDevice = value;
                 RaisePropertyChanged();
             }
         }
@@ -49,7 +61,7 @@ namespace Payroll.ViewModels
         #endregion
 
         #region Events
-        public void Initilize(Contact contact)
+        public void Initilize(ContactBO contact)
         {
             Settings.IsLoggedIn = true;
             Settings.EntryID = contact.EntryID;
@@ -61,6 +73,50 @@ namespace Payroll.ViewModels
             Settings.IsVarified = contact.IsVarified;
 
             Contact = contact;
+
+
+            try
+            {
+                if (Helper.AuthenticationNeeded)
+                {
+                    LayoutVisibility = false;
+
+                    if (Helper.IsFingerPrintAvailable)
+                    {
+                        FingerPrintAuthentication();
+                    }
+                    else
+                    {
+                        PinAuthentication();
+                    }
+
+                    Helper.AuthenticationNeeded = false;
+                }
+                else
+                {
+                    LayoutVisibility = true;
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        public void Initilize(UserDeviceBO userDeviceBo)
+        {
+            Settings.IsLoggedIn = true;
+            Settings.Name = userDeviceBo.UserDevice[0].EmployeeName;
+            //Settings.EntryID = contact.EntryID;
+            //Settings.Name = contact.Name;
+            //Settings.Email = contact.Email;
+            //Settings.PhoneNumber = contact.PhoneNumber;
+            //Settings.AccountNumber = contact.AccountNumber;
+            //Settings.DeviceID = contact.DeviceID;
+            //Settings.IsVarified = contact.IsVarified;
+
+            UserDevice = userDeviceBo;
 
 
             try
@@ -165,15 +221,16 @@ namespace Payroll.ViewModels
             Helper.AuthenticationNeeded = true;
 
             Settings.IsLoggedIn = false;
-            Settings.EntryID = 0;
             Settings.Name = String.Empty;
-            Settings.Email = String.Empty;
-            Settings.PhoneNumber = String.Empty;
-            Settings.AccountNumber = String.Empty;
-            Settings.DeviceID = String.Empty;
-            Settings.IsVarified = false;
+            //Settings.EntryID = 0;
+            //Settings.Name = String.Empty;
+            //Settings.Email = String.Empty;
+            //Settings.PhoneNumber = String.Empty;
+            //Settings.AccountNumber = String.Empty;
+            //Settings.DeviceID = String.Empty;
+            //Settings.IsVarified = false;
 
-            Contact.IsVarified = false;
+            //Contact.IsVarified = false;
             await new ContactsService().UpdateContact(Contact);
             NavigationService.GoBack();
         }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Payroll.Model
 {
-    public class Contact
+    public class ContactBO : BaseBO
     {
         public Int32 EntryID { get; set; }
         public string PhoneNumber { get; set; }

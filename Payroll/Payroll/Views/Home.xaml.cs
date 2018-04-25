@@ -16,12 +16,20 @@ namespace Payroll.Views
             BindingContext = ViewModel;
         }
 
-        public Home(Contact contact)
+        public Home(ContactBO contact)
         {
             InitializeComponent();
             BindingContext = ViewModel;
             NavigationPage.SetHasNavigationBar(this, false);
             ViewModel.Initilize(contact);
+        }
+
+        public Home(UserDeviceBO userDeviceBo)
+        {
+            InitializeComponent();
+            BindingContext = ViewModel;
+            NavigationPage.SetHasNavigationBar(this, false);
+            ViewModel.Initilize(userDeviceBo);
         }
     }
 }

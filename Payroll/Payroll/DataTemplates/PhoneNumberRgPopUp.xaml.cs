@@ -19,14 +19,15 @@ namespace Payroll.DataTemplates
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PhoneNumberRgPopUp : PopupPage
     {
-        public Contact Contact;
+        //public ContactBO Contact;
 
+        public UserDeviceBO UserDevice;
         public PhoneNumberRgPopUp()
         {
             InitializeComponent();
 
-            //PhoneNumberEntry.Text = "8154617032";
-            //EmailEntry.Text = "Charles.onwumere@infinitisys.com";
+            PhoneNumberEntry.Text = "8053090300";
+            EmailEntry.Text = "femi.onashile@ebsrcm.com";
         }
 
         private async void Button_OnClicked(object sender, EventArgs e)
@@ -34,26 +35,22 @@ namespace Payroll.DataTemplates
             UserDialogs.Instance.ShowLoading("Authenticating");
             try
             {
-                Contact = await new ContactsService().ValidateContact(Helper.AutoRetreivedDeviceId, PhoneNumberEntry.Text);
-                if (Contact != null && !String.IsNullOrEmpty(Contact.PhoneNumber))
+                UserDevice = await new ValidationService().ValidateUser(Helper.AutoRetreivedDeviceId, PhoneNumberEntry.Text,EmailEntry.Text);
+                if (UserDevice == null)
                 {
-                    if (string.Compare(Contact.Email.Trim(), EmailEntry.Text.Trim(),true) == 0)
-                    {
-                        await PopupNavigation.PopAsync();
-                        BaseViewModel.NavigationService.NavigateTo(ViewModelLocator.Home, Contact);
-                    }
-                    else
-                    {
-                        var result = await UserDialogs.Instance.ConfirmAsync("Email is not valid !", "", "Close App", "Retry");
-                        if (result)
-                        {
-                            DependencyService.Get<ICloseApplication>().CloseApp();
-                        }
-                    }
+                    await UserDialogs.Instance.AlertAsync("Sorry something went wrong!");
+                    UserDialogs.Instance.HideLoading();
+                    return;
+                }
+
+                if (UserDevice.Success=="true")
+                {
+                    await PopupNavigation.PopAsync();
+                    BaseViewModel.NavigationService.NavigateTo(ViewModelLocator.Home, UserDevice);
                 }
                 else
                 {
-                    var result = await UserDialogs.Instance.ConfirmAsync("Mobile number is not valid !", "", "Close App", "Retry");
+                    var result = await UserDialogs.Instance.ConfirmAsync(UserDevice.Message, "", "Close App", "Retry");
                     if (result)
                     {
                         DependencyService.Get<ICloseApplication>().CloseApp();

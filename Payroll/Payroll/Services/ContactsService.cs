@@ -7,12 +7,12 @@ namespace Payroll.Services
 {
     public class ContactsService : ApiBaseService
     {
-        public async Task<Contact> ValidateContact(string deviceToken, string phoneNumber)
+        public async Task<ContactBO> ValidateContact(string deviceToken, string phoneNumber,string email)
         {
             try
             {
-                var endpoint = String.Format(GetContacts, deviceToken, phoneNumber);
-                var contact = await HttpClientBase.Get<Contact>(endpoint);
+                var endpoint = String.Format(Validate, phoneNumber, email,deviceToken);
+                var contact = await HttpClientBase.Get<ContactBO>(endpoint);
                 return contact;
             }
             catch (Exception e)
@@ -22,7 +22,7 @@ namespace Payroll.Services
           
         }
 
-        public async Task<bool> UpdateContact(Contact contactbo)
+        public async Task<bool> UpdateContact(ContactBO contactbo)
         {
             try
             {

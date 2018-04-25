@@ -19,9 +19,9 @@ namespace Payroll.DataTemplates
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CredentialsRgPopUp : PopupPage
     {
-        private Contact _contact;
+        private ContactBO _contact;
 
-        public CredentialsRgPopUp(Contact contact)
+        public CredentialsRgPopUp(ContactBO contact)
         {
             InitializeComponent();
             _contact = contact;
