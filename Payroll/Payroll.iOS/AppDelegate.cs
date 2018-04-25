@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Firebase.Core;
-using FormsPinView.iOS;
+﻿using FormsPinView.iOS;
 using Foundation;
 using Syncfusion.SfPdfViewer.XForms.iOS;
 using Syncfusion.SfPicker.XForms.iOS;
