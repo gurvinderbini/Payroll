@@ -17,17 +17,27 @@ namespace Payroll.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
+        #region CTOR
         public MainPageViewModel(INavigationService navigationService) : base(navigationService)
         {
         }
 
-        public  RelayCommand LoginCommand=>new RelayCommand(Login);
+        #endregion
 
+        #region Properties
+        public Contact Contact { get; set; }
+        #endregion
+
+        #region Commands
+        public RelayCommand LoginCommand => new RelayCommand(Login);
+        #endregion
+
+        #region Events
         private async void Login()
         {
             try
             {
-           
+
                 Helper.IsFingerPrintAvailable = await Plugin.Fingerprint.CrossFingerprint.Current.IsAvailableAsync();
 
                 //if user is already logged in
@@ -49,7 +59,7 @@ namespace Payroll.ViewModels
                 UserDialogs.Instance.ShowLoading("Authenticating");
                 //if we cannot retreive the contact
 
-                Helper.AutoRetreivedPhoneNumber=String.Empty; //remove this code
+                Helper.AutoRetreivedPhoneNumber = String.Empty; //remove this code
 
                 if (String.IsNullOrEmpty(Helper.AutoRetreivedPhoneNumber))
                 {
@@ -59,7 +69,7 @@ namespace Payroll.ViewModels
                 }
 
                 //if we retreive the contact and check whether it is verfied or not
-               Contact = await ContactsService.ValidateContact(Helper.AutoRetreivedDeviceId, Helper.AutoRetreivedPhoneNumber);
+                Contact = await ContactsService.ValidateContact(Helper.AutoRetreivedDeviceId, Helper.AutoRetreivedPhoneNumber);
                 if (Contact != null)
                 {
                     //if yes than it is navigated
@@ -85,11 +95,10 @@ namespace Payroll.ViewModels
             }
         }
 
-        public Contact Contact { get; set; }
-
         public void Navigate(Contact contact)
         {
             NavigationService.NavigateTo(ViewModelLocator.Home, contact);
         }
+        #endregion
     }
 }

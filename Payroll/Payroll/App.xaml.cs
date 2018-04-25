@@ -15,8 +15,6 @@ namespace Payroll
 {
     public partial class App : Application
     {
-        private readonly NavigationService.NavigationService _navigationService;
-
         #region Locator
         private static ViewModelLocator _locator;
         public static ViewModelLocator Locator => _locator ?? (_locator = new ViewModelLocator());
@@ -25,18 +23,18 @@ namespace Payroll
         public App()
         {
             InitializeComponent();
-            _navigationService = new NavigationService.NavigationService();
-            _navigationService.Configure(ViewModelLocator.Home, typeof(Home));
-            _navigationService.Configure(ViewModelLocator.MainPage, typeof(MainPage));
-            _navigationService.Configure(ViewModelLocator.PaySlipsList, typeof(PaySlipsList));
-            _navigationService.Configure(ViewModelLocator.PaySlipsDetail, typeof(PaySlipDetail));
-            _navigationService.Configure(ViewModelLocator.Profile, typeof(Profile));
+            var navigationService = new NavigationService.NavigationService();
+            navigationService.Configure(ViewModelLocator.Home, typeof(Home));
+            navigationService.Configure(ViewModelLocator.MainPage, typeof(MainPage));
+            navigationService.Configure(ViewModelLocator.PaySlipsList, typeof(PaySlipsList));
+            navigationService.Configure(ViewModelLocator.PaySlipsDetail, typeof(PaySlipDetail));
+            navigationService.Configure(ViewModelLocator.Profile, typeof(Profile));
 
             if (!SimpleIoc.Default.IsRegistered<INavigationService>())
-                SimpleIoc.Default.Register<INavigationService>(() => _navigationService);
+                SimpleIoc.Default.Register<INavigationService>(() => navigationService);
 
             var firstPage = new NavigationPage(new MainPage());
-            _navigationService.Initialize(firstPage);
+            navigationService.Initialize(firstPage);
             MainPage = firstPage;
         }
 
