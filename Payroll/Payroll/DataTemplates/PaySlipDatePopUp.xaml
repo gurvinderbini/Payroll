@@ -7,9 +7,23 @@
         <Frame HorizontalOptions="CenterAndExpand"   CornerRadius="20" 
                Padding="20, 20, 20, 20" BackgroundColor="White">
             <StackLayout HorizontalOptions="CenterAndExpand"  Padding="0, 10, 0, 0" >
-                
-                <Label Text="Enter payslip month and year" TextColor="Gray" FontSize="20" FontAttributes="Bold"
-                       HorizontalOptions="Center"></Label>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="40"/>
+                        
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Enter payslip month and year" TextColor="Gray" 
+                           FontSize="18" FontAttributes="Bold"
+                           HorizontalOptions="CenterAndExpand"></Label>
+                    <Image Grid.Column="1" Source="close_icon.png" Aspect="AspectFit" VerticalOptions="Start"
+                           HeightRequest="30">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Close_Tapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    </Grid>
+               
                 <StackLayout HorizontalOptions="FillAndExpand" 
                              VerticalOptions="FillAndExpand">
                     <StackLayout x:Name="PhoneNumberStack">

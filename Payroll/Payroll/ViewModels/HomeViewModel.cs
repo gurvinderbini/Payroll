@@ -218,21 +218,26 @@ namespace Payroll.ViewModels
 
         private async void ClearAuthentication()
         {
-            Helper.AuthenticationNeeded = true;
+            var result = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to logout ?");
+            if (result)
+            {
+                Helper.AuthenticationNeeded = true;
 
-            Settings.IsLoggedIn = false;
-            Settings.Name = String.Empty;
-            //Settings.EntryID = 0;
-            //Settings.Name = String.Empty;
-            //Settings.Email = String.Empty;
-            //Settings.PhoneNumber = String.Empty;
-            //Settings.AccountNumber = String.Empty;
-            //Settings.DeviceID = String.Empty;
-            //Settings.IsVarified = false;
+                Settings.IsLoggedIn = false;
+                Settings.Name = String.Empty;
+                //Settings.EntryID = 0;
+                //Settings.Name = String.Empty;
+                //Settings.Email = String.Empty;
+                //Settings.PhoneNumber = String.Empty;
+                //Settings.AccountNumber = String.Empty;
+                //Settings.DeviceID = String.Empty;
+                //Settings.IsVarified = false;
 
-            //Contact.IsVarified = false;
-            await new ContactsService().UpdateContact(Contact);
-            NavigationService.GoBack();
+                //Contact.IsVarified = false;
+                await new ContactsService().UpdateContact(Contact);
+                NavigationService.GoBack();
+            }
+            
         }
 
         private void GoToProfile()

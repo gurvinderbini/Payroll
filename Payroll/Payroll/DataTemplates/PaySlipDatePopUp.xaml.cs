@@ -31,12 +31,12 @@ namespace Payroll.DataTemplates
 
         private async void Button_OnClicked(object sender, EventArgs e)
         {
-            
+
             await PopupNavigation.PopAsync();
             try
             {
-               _viewModel.LoadingVisibilty = true;
-               // UserDialogs.Instance.ShowLoading("Generating Payslip ! Please wait");
+                _viewModel.LoadingVisibilty = true;
+                // UserDialogs.Instance.ShowLoading("Generating Payslip ! Please wait");
                 var result = await new PaySlipService().GetPaySlip(_viewModel.SelectedMonthNumber, Convert.ToInt32(_viewModel.SelectedYear), Helpers.Helper.AutoRetreivedDeviceId);
                 if (result.Success == "true")
                 {
@@ -52,12 +52,12 @@ namespace Payroll.DataTemplates
             }
             catch (Exception exception)
             {
-              await  UserDialogs.Instance.AlertAsync("Sorry payslip cannot be created");
+                await UserDialogs.Instance.AlertAsync("Sorry payslip cannot be created");
                 _viewModel.LoadingVisibilty = false;
-            
+
                 //  UserDialogs.Instance.HideLoading();
             }
-            
+
 
         }
 
@@ -69,6 +69,11 @@ namespace Payroll.DataTemplates
         private void YearPicker_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             _viewModel.SelectedYear = Convert.ToString(YearPicker.SelectedItem);
+        }
+
+        private void Close_Tapped(object sender, EventArgs e)
+        {
+            PopupNavigation.PopAsync();
         }
     }
 }
