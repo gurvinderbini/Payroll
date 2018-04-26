@@ -18,9 +18,9 @@ using Payroll.Interfaces;
 
 namespace Payroll.Droid.NativeImplementations
 {
-  public  class FileOperations:IFileOperations
+    public class FileOperations : IFileOperations
     {
-        public bool SavePDF(string fileName,byte[] data)
+        public bool SavePDF(string fileName, byte[] data)
         {
             try
             {
@@ -36,6 +36,27 @@ namespace Payroll.Droid.NativeImplementations
                 return false;
             }
         }
+
+        public byte[] ReadPDF(string fileName)
+        {
+            try
+            {
+                var dir = new Java.IO.File
+                    (Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + "/Document/Payroll");
+                string filePath = System.IO.Path.Combine(dir.Path, fileName);
+                var bytes = File.ReadAllBytes(filePath);
+                if (bytes.Length > 1)
+                {
+                    return bytes;
+                }
+                return null;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
 
         public void CreateFolder()
         {

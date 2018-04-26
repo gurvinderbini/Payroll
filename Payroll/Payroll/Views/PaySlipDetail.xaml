@@ -51,7 +51,9 @@
                         BackgroundColor="{StaticResource PrimaryBlue}" CornerRadius="15"
                         Command="{Binding SearchCommand}"/>
             </Grid>-->
+            <!--<WebView Source="{Binding WebviewSource}" Grid.Row="1" IsEnabled="{Binding Enablelayout}" Opacity="{Binding LayoutOpacity}"></WebView>-->
             <ScrollView Grid.Row="1" IsEnabled="{Binding Enablelayout}" Opacity="{Binding LayoutOpacity}">
+              
                 <xForms:SfPdfViewer x:Name="pdfViewerControl"  
                                     InputFileStream="{Binding PdfDocumentStream}"/>
             </ScrollView >

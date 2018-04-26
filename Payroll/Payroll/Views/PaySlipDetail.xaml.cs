@@ -31,7 +31,7 @@ namespace Payroll.Views
             pdfViewerControl.DocumentSaveInitiated += async (sender, args) =>
             {
                 var stream = args.SaveStream;
-                var filename = _viewModel.SelectedMonth + _viewModel.SelectedYear + "PaySlip.pdf";
+                var filename = $"{_viewModel.SelectedMonth}_{_viewModel.SelectedYear}_payslip.pdf";
                 var fileOperations = DependencyService.Get<IFileOperations>();
                 var result = fileOperations.SavePDF(filename, stream.GetBytes());
                 if (result)

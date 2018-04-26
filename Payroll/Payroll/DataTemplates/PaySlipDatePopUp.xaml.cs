@@ -7,7 +7,10 @@ using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 
 using System;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using Payroll.Interfaces;
 using Payroll.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -41,9 +44,21 @@ namespace Payroll.DataTemplates
                 var result = await new PaySlipService().GetPaySlip(_viewModel.SelectedMonthNumber, Convert.ToInt32(_viewModel.SelectedYear), Helpers.Helper.AutoRetreivedDeviceId);
                 if (result.Success == "true")
                 {
-                    var url = result.Payslip;
-                    Device.OpenUri(new Uri(url));
-                //    _viewModel.PdfDocumentStream = await Task.Run(() => url.ConvertToStream());
+                    var filename = $"{_viewModel.SelectedMonth}_{_viewModel.SelectedYear}_payslip.pdf";
+
+                    var bytes = DependencyService.Get<IFileOperations>().ReadPDF(filename);
+                    if (bytes != null)
+                    {
+                        _viewModel.PdfDocumentStream =  new MemoryStream(bytes);
+                    }
+                    else
+                    {
+                        var url = result.Payslip;
+                        _viewModel.PdfDocumentStream = await Task.Run(() => url.ConvertToStream());
+
+                        // _viewModel.WebviewSource = url;
+                        //   Device.OpenUri(new Uri(url));
+                    }
                 }
                 else
                 {

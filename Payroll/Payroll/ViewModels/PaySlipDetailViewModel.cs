@@ -12,6 +12,7 @@ using Payroll.Extensions;
 using Payroll.DataTemplates;
 
 using Rg.Plugins.Popup.Services;
+using Xamarin.Forms;
 
 namespace Payroll.ViewModels
 {
@@ -30,6 +31,19 @@ namespace Payroll.ViewModels
         #endregion
 
         #region Properties
+
+        private WebViewSource _webviewSource;
+
+        public WebViewSource WebviewSource
+        {
+            get => _webviewSource;
+            set
+            {
+                _webviewSource = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private string _selectedYear = String.Empty;
 
         public string SelectedYear
