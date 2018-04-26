@@ -24,6 +24,8 @@ namespace Payroll.DataTemplates
             _viewModel = viewModel;
             MonthPicker.ItemsSource = viewModel.MonthsList;
             YearPicker.ItemsSource = viewModel.YearsList;
+            _viewModel.SelectedMonth = viewModel.MonthsList[0];
+            _viewModel.SelectedYear = viewModel.YearsList[0];
 
         }
 
@@ -33,7 +35,8 @@ namespace Payroll.DataTemplates
             await PopupNavigation.PopAsync();
             try
             {
-                UserDialogs.Instance.ShowLoading("Generating Payslip ! Please wait");
+               _viewModel.LoadingVisibilty = true;
+               // UserDialogs.Instance.ShowLoading("Generating Payslip ! Please wait");
                 var result = await new PaySlipService().GetPaySlip(_viewModel.SelectedMonthNumber, Convert.ToInt32(_viewModel.SelectedYear), Helpers.Helper.AutoRetreivedDeviceId);
                 if (result.Success == "true")
                 {
@@ -44,13 +47,15 @@ namespace Payroll.DataTemplates
                 {
                     await UserDialogs.Instance.AlertAsync(result.Message);
                 }
-
-                UserDialogs.Instance.HideLoading();
+                _viewModel.LoadingVisibilty = false;
+                //   UserDialogs.Instance.HideLoading();
             }
             catch (Exception exception)
             {
-              await  UserDialogs.Instance.AlertAsync("Sorry something went wrong");
-                UserDialogs.Instance.HideLoading();
+              await  UserDialogs.Instance.AlertAsync("Sorry payslip cannot be created");
+                _viewModel.LoadingVisibilty = false;
+            
+                //  UserDialogs.Instance.HideLoading();
             }
             
 

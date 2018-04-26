@@ -1,5 +1,6 @@
 ﻿using FormsPinView.iOS;
 using Foundation;
+using Syncfusion.SfBusyIndicator.XForms.iOS;
 using Syncfusion.SfPdfViewer.XForms.iOS;
 using Syncfusion.SfPicker.XForms.iOS;
 using Syncfusion.XForms.iOS.PopupLayout;
@@ -29,7 +30,7 @@ namespace Payroll.iOS
 
             new SfPdfDocumentViewRenderer();
             SfPickerRenderer.Init();
-
+            new SfBusyIndicatorRenderer();
             /********** ADD THIS CALL TO INITIALIZE XFGloss *********/
             XFGloss.iOS.Library.Init();
             LoadApplication(new App());

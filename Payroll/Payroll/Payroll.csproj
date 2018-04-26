@@ -22,6 +22,7 @@
     <PackageReference Include="Plugin.FirebasePushNotification" Version="2.3.0" />
     <PackageReference Include="Plugin.Permissions" Version="2.2.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.0.4" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="16.1.0.37" />
     <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer" Version="16.1.0.32" />
     <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="16.1.0.32" />
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="16.1.0.32" />

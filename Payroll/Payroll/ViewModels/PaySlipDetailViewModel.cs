@@ -20,7 +20,7 @@ namespace Payroll.ViewModels
         #region CTOR
         public PaySlipDetailViewModel(INavigationService navigationService) : base(navigationService)
         {
-            for (var i = 2000; i < 2019; i++)
+            for (var i = 2018; i > 2000; i--)
             {
                 YearsList.Add(i.ToString());
             }

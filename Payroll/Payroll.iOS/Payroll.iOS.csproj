@@ -153,6 +153,9 @@
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>1.0.4</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator">
+      <Version>16.1.0.37</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer">
       <Version>16.1.0.32</Version>
     </PackageReference>

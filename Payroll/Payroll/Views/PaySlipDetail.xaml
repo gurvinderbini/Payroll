@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControls="clr-namespace:Payroll.CustomControls;assembly=Payroll"
              xmlns:xForms="clr-namespace:Syncfusion.SfPdfViewer.XForms;assembly=Syncfusion.SfPdfViewer.XForms"
+             xmlns:xForms1="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              x:Class="Payroll.Views.PaySlipDetail"
              Title="PaySlip Detail">
     <ContentPage.Content>
@@ -12,8 +13,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <customControls:GradientStackLayout HorizontalOptions="FillAndExpand" 
-                                                StartColor="{StaticResource PrimaryBlue}"
-                                                EndColor="{StaticResource SecondaryBlue}"  >
+                                                IsEnabled="{Binding Enablelayout}" Opacity="{Binding LayoutOpacity}"
+                                                StartColor="{StaticResource PrimaryBlue}" EndColor="{StaticResource SecondaryBlue}"  >
                 <Grid HeightRequest="60" Margin="5,0,5,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
@@ -50,10 +51,15 @@
                         BackgroundColor="{StaticResource PrimaryBlue}" CornerRadius="15"
                         Command="{Binding SearchCommand}"/>
             </Grid>-->
-            <ScrollView Grid.Row="1" >
+            <ScrollView Grid.Row="1" IsEnabled="{Binding Enablelayout}" Opacity="{Binding LayoutOpacity}">
                 <xForms:SfPdfViewer x:Name="pdfViewerControl"  
                                     InputFileStream="{Binding PdfDocumentStream}"/>
-            </ScrollView>
-            </Grid>
+            </ScrollView >
+            <xForms1:SfBusyIndicator  Grid.Row="1" x:Name="busyindicator" AnimationType="Gear" ViewBoxHeight="100"
+                                      ViewBoxWidth="100"  TitlePlacement="Top" 
+                                      Title="Generating Payslip ! Please wait ..." 
+                                       TextColor="{StaticResource PrimaryBlue}" IsBusy="{Binding LoadingVisibilty}"
+                                      IsVisible="{Binding LoadingVisibilty}"/>
+</Grid>
     </ContentPage.Content>
 </ContentPage>

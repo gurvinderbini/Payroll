@@ -19,6 +19,18 @@ namespace Payroll.ViewModels
         #endregion
 
         #region Properties
+        private bool _enableLayout=true;
+
+        public bool Enablelayout
+        {
+            get => _enableLayout;
+            set
+            {
+                _enableLayout = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private bool _layoutVisibility;
 
         public bool LayoutVisibility
@@ -30,7 +42,31 @@ namespace Payroll.ViewModels
                 RaisePropertyChanged();
             }
         }
+        private bool _loadingVisibilty;
 
+        public bool LoadingVisibilty
+        {
+            get => _loadingVisibilty;
+            set
+            {
+                _loadingVisibilty = value;
+                Enablelayout = !_loadingVisibilty;
+                LayoutOpacity= _loadingVisibilty?.5d:1d;
+                RaisePropertyChanged();
+            }
+        }
+
+        private double _layoutOpacity=1d;
+
+        public double LayoutOpacity
+        {
+            get => _layoutOpacity;
+            set
+            {
+                _layoutOpacity = value;
+                RaisePropertyChanged();
+            }
+        }
         #endregion
 
         #region Services
