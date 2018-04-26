@@ -12,5 +12,8 @@ namespace Payroll.ViewModels
         {
         }
         #endregion
+
+        public string Name => Settings.Name;
+
     }
 }

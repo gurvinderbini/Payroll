@@ -41,6 +41,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="DataTemplates\LoginPopUp.xaml.cs">
+      <DependentUpon>LoginPopUp.xaml</DependentUpon>
+    </Compile>
     <Compile Update="DataTemplates\SetNumericPinPopUp.xaml.cs">
       <DependentUpon>SetNumericPinPopUp.xaml</DependentUpon>
     </Compile>
@@ -59,7 +62,7 @@
     <EmbeddedResource Update="DataTemplates\SetNumericPinPopUp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="DataTemplates\PhoneNumberRgPopUp.xaml">
+    <EmbeddedResource Update="DataTemplates\LoginPopUp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AttendancePage.xaml">

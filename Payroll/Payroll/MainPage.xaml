@@ -2,17 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xfGloss="clr-namespace:XFGloss;assembly=XFGloss"
+             xmlns:xForms="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              x:Class="Payroll.MainPage"
              Title="Login">
     <xfGloss:ContentPageGloss.BackgroundGradient>
-        <xfGloss:Gradient Rotation="150">
+        <xfGloss:Gradient Rotation="150" >
             <xfGloss:GradientStep StepColor="{StaticResource PrimaryBlue}" StepPercentage="0" />
             <xfGloss:GradientStep StepColor="{StaticResource SecondaryBlue}" StepPercentage="1" />
         </xfGloss:Gradient>
     </xfGloss:ContentPageGloss.BackgroundGradient>
 
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <StackLayout Orientation="Vertical" >
+        <StackLayout Orientation="Vertical" IsVisible="{Binding Enablelayout}">
             <Image Source="payroll.png" HorizontalOptions="FillAndExpand"
                    VerticalOptions="CenterAndExpand" Margin="20,60,20,0" 
                    Aspect="AspectFit" Opacity=".9"></Image>
@@ -21,6 +22,11 @@
                     VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" 
                     CornerRadius="20" Margin="30,30,30,60" Opacity=".9"/>
         </StackLayout>
+        <xForms:SfBusyIndicator AnimationType="DoubleCircle" ViewBoxHeight="100" Duration="1"
+                                ViewBoxWidth="100"  TitlePlacement="Bottom" 
+                                Title="Logging in ! Please wait ..." 
+                                TextColor="White" IsBusy="{Binding LoadingVisibilty}"
+                                IsVisible="{Binding LoadingVisibilty}"/>
     </Grid>
 </ContentPage>
 

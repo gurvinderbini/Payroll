@@ -9,6 +9,7 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Threading.Tasks;
 using Payroll.Services;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Payroll.DataTemplates
@@ -41,7 +42,8 @@ namespace Payroll.DataTemplates
                 if (result.Success == "true")
                 {
                     var url = result.Payslip;
-                    _viewModel.PdfDocumentStream = await Task.Run(() => url.ConvertToStream());
+                    Device.OpenUri(new Uri(url));
+                //    _viewModel.PdfDocumentStream = await Task.Run(() => url.ConvertToStream());
                 }
                 else
                 {

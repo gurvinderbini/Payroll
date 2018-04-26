@@ -37,6 +37,8 @@ namespace Payroll.ViewModels
         {
             try
             {
+                await PopupNavigation.PushAsync(new LoginPopUp(this));
+
 
                 //Helper.IsFingerPrintAvailable = await Plugin.Fingerprint.CrossFingerprint.Current.IsAvailableAsync();
 
@@ -56,11 +58,10 @@ namespace Payroll.ViewModels
                 //    return;
                 //}
 
-                UserDialogs.Instance.ShowLoading("Authenticating");
-                //if we cannot retreive the contact
+                //UserDialogs.Instance.ShowLoading("Authenticating");
+                ////if we cannot retreive the contact
 
-                await PopupNavigation.PushAsync(new PhoneNumberRgPopUp());
-                UserDialogs.Instance.HideLoading();
+                //UserDialogs.Instance.HideLoading();
             }
             catch (Exception)
             {

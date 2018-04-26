@@ -16,5 +16,6 @@ namespace Payroll.Views
             NavigationPage.SetHasNavigationBar(this,false);
 
 		}
+
 	}
 }

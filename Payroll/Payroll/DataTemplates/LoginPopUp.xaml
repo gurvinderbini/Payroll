@@ -2,9 +2,9 @@
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-             x:Class="Payroll.DataTemplates.PhoneNumberRgPopUp">
+             x:Class="Payroll.DataTemplates.LoginPopUp">
     <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20" 
-                 >
+                x:Name="MainStackLayout">
         <Frame HorizontalOptions="CenterAndExpand"   CornerRadius="20" 
                Padding="20, 20, 20, 20" BackgroundColor="White">
             <StackLayout HorizontalOptions="CenterAndExpand"  Padding="0, 10, 0, 0" >

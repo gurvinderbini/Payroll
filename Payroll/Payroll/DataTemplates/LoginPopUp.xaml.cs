@@ -17,25 +17,32 @@ using Xamarin.Forms.Xaml;
 namespace Payroll.DataTemplates
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PhoneNumberRgPopUp : PopupPage
+    public partial class LoginPopUp : PopupPage
     {
         //public ContactBO Contact;
-
+        private MainPageViewModel _viewModel;
         public UserDeviceBO UserDevice;
-        public PhoneNumberRgPopUp()
+        public LoginPopUp(MainPageViewModel viewModel)
         {
             InitializeComponent();
+            _viewModel = viewModel;
 
-            PhoneNumberEntry.Text = "8053090300";
-            EmailEntry.Text = "femi.onashile@ebsrcm.com";
+#if DEBUG
+            //PhoneNumberEntry.Text = "8053090300";
+            //EmailEntry.Text = "femi.onashile@ebsrcm.com";
+#endif
+
         }
 
         private async void Button_OnClicked(object sender, EventArgs e)
         {
-            UserDialogs.Instance.ShowLoading("Authenticating");
+            //UserDialogs.Instance.ShowLoading("Authenticating");
+
+            _viewModel.LoadingVisibilty = true;
+            await PopupNavigation.PopAsync();
             try
             {
-                UserDevice = await new ValidationService().ValidateUser(Helper.AutoRetreivedDeviceId, PhoneNumberEntry.Text,EmailEntry.Text);
+                UserDevice = await new ValidationService().ValidateUser(Helper.AutoRetreivedDeviceId, PhoneNumberEntry.Text, EmailEntry.Text);
                 if (UserDevice == null)
                 {
                     await UserDialogs.Instance.AlertAsync("Sorry something went wrong!");
@@ -43,9 +50,9 @@ namespace Payroll.DataTemplates
                     return;
                 }
 
-                if (UserDevice.Success=="true")
+                if (UserDevice.Success == "true")
                 {
-                    await PopupNavigation.PopAsync();
+
                     BaseViewModel.NavigationService.NavigateTo(ViewModelLocator.Home, UserDevice);
                 }
                 else
@@ -55,12 +62,20 @@ namespace Payroll.DataTemplates
                     {
                         DependencyService.Get<ICloseApplication>().CloseApp();
                     }
+                    else
+                    {
+                        await PopupNavigation.PushAsync(new LoginPopUp(_viewModel));
+                    }
                 }
-                UserDialogs.Instance.HideLoading();
+                _viewModel.LoadingVisibilty = false;
+                //  MainStackLayout.IsVisible = !_viewModel.LoadingVisibilty;
+                //  UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
-                UserDialogs.Instance.HideLoading();
+                _viewModel.LoadingVisibilty = false;
+                // MainStackLayout.IsVisible = !_viewModel.LoadingVisibilty;
+                // UserDialogs.Instance.HideLoading();
             }
 
         }

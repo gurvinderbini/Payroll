@@ -24,6 +24,8 @@
                           FontSize="Large" FontAttributes="Bold"/>
                 </Grid>
             </customControls:GradientStackLayout>
+            <Label Text="{Binding Name,StringFormat='Welcome {0}'}"
+                   VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
             <!--<ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <StackLayout>
 
