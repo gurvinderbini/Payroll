@@ -36,7 +36,7 @@ namespace Payroll.ViewModels
         #region Services
         public static ContactsService ContactsService => new ContactsService();
         public static ValidationService ValidationService => new ValidationService();
-
+        public static PaySlipService PaySlipService=>new PaySlipService();
         #endregion
 
         #region Commands

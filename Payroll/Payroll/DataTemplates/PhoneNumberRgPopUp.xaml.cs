@@ -58,7 +58,7 @@ namespace Payroll.DataTemplates
                 }
                 UserDialogs.Instance.HideLoading();
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
             }

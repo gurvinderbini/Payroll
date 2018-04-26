@@ -8,7 +8,7 @@ using Rg.Plugins.Popup.Services;
 
 using System;
 using System.Threading.Tasks;
-
+using Payroll.Services;
 using Xamarin.Forms.Xaml;
 
 namespace Payroll.DataTemplates
@@ -31,12 +31,29 @@ namespace Payroll.DataTemplates
         {
             
             await PopupNavigation.PopAsync();
-            UserDialogs.Instance.ShowLoading("Generating Payslip ! Please wait");
-            var url = "https://payroll.erpcrebit.com/Content/ClientAttach/PayHistory/payroll/3541/2018/3/PaySlip_3541_2018_3.pdf";
-            _viewModel.PdfDocumentStream = await Task.Run(() => url.ConvertToStream());
+            try
+            {
+                UserDialogs.Instance.ShowLoading("Generating Payslip ! Please wait");
+                var result = await new PaySlipService().GetPaySlip(_viewModel.SelectedMonthNumber, Convert.ToInt32(_viewModel.SelectedYear), Helpers.Helper.AutoRetreivedDeviceId);
+                if (result.Success == "true")
+                {
+                    var url = result.Payslip;
+                    _viewModel.PdfDocumentStream = await Task.Run(() => url.ConvertToStream());
+                }
+                else
+                {
+                    await UserDialogs.Instance.AlertAsync(result.Message);
+                }
 
-            UserDialogs.Instance.HideLoading();
-          
+                UserDialogs.Instance.HideLoading();
+            }
+            catch (Exception exception)
+            {
+              await  UserDialogs.Instance.AlertAsync("Sorry something went wrong");
+                UserDialogs.Instance.HideLoading();
+            }
+            
+
         }
 
         private void MonthPicker_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -46,7 +63,7 @@ namespace Payroll.DataTemplates
 
         private void YearPicker_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            _viewModel.SelectedYear = Convert.ToString(MonthPicker.SelectedItem);
+            _viewModel.SelectedYear = Convert.ToString(YearPicker.SelectedItem);
         }
     }
 }

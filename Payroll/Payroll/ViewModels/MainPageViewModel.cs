@@ -38,23 +38,23 @@ namespace Payroll.ViewModels
             try
             {
 
-                Helper.IsFingerPrintAvailable = await Plugin.Fingerprint.CrossFingerprint.Current.IsAvailableAsync();
+                //Helper.IsFingerPrintAvailable = await Plugin.Fingerprint.CrossFingerprint.Current.IsAvailableAsync();
 
-                //if user is already logged in
-                if (Settings.IsLoggedIn)
-                {
-                    var contact = new ContactBO();
-                    Settings.IsLoggedIn = true;
-                    contact.EntryID = Settings.EntryID;
-                    contact.Name = Settings.Name;
-                    contact.Email = Settings.Email;
-                    contact.PhoneNumber = Settings.PhoneNumber;
-                    contact.AccountNumber = Settings.AccountNumber;
-                    contact.DeviceID = Settings.DeviceID;
-                    contact.IsVarified = Settings.IsVarified;
-                    Navigate(contact);
-                    return;
-                }
+                ////if user is already logged in
+                //if (Settings.IsLoggedIn)
+                //{
+                //    var contact = new ContactBO();
+                //    Settings.IsLoggedIn = true;
+                //    //contact.Name = Settings.Name;
+                //    //contact.EntryID = Settings.EntryID;
+                //    //contact.Email = Settings.Email;
+                //    //contact.PhoneNumber = Settings.PhoneNumber;
+                //    //contact.AccountNumber = Settings.AccountNumber;
+                //    //contact.DeviceID = Settings.DeviceID;
+                //    //contact.IsVarified = Settings.IsVarified;
+                //    Navigate(contact);
+                //    return;
+                //}
 
                 UserDialogs.Instance.ShowLoading("Authenticating");
                 //if we cannot retreive the contact
@@ -62,15 +62,15 @@ namespace Payroll.ViewModels
                 await PopupNavigation.PushAsync(new PhoneNumberRgPopUp());
                 UserDialogs.Instance.HideLoading();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 UserDialogs.Instance.HideLoading();
             }
         }
 
-        public void Navigate(ContactBO contact)
+        public void Navigate(UserDeviceBO userDevice)
         {
-            NavigationService.NavigateTo(ViewModelLocator.Home, contact);
+            NavigationService.NavigateTo(ViewModelLocator.Home, userDevice);
         }
         #endregion
 

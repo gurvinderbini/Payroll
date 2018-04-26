@@ -7,7 +7,8 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 
 using System;
-
+using Payroll.Helpers;
+using Payroll.Model;
 using Xamarin.Forms;
 
 namespace Payroll
@@ -54,6 +55,25 @@ namespace Payroll
                     {
                         DependencyService.Get<IRegisterPhoneDetails>().RegisterDetails();
                     }
+                }
+
+                Helper.IsFingerPrintAvailable = await Plugin.Fingerprint.CrossFingerprint.Current.IsAvailableAsync();
+
+                //if user is already logged in
+                if (Settings.IsLoggedIn)
+                {
+                    Settings.IsLoggedIn = true;
+                    var userDeviceBo = new UserDeviceBO {UserDevice = new Userdevice[1]};
+
+                    userDeviceBo.UserDevice[0]=new Userdevice(){EmployeeName = Settings.Name};
+                    //contact.EntryID = Settings.EntryID;
+                    //contact.Email = Settings.Email;
+                    //contact.PhoneNumber = Settings.PhoneNumber;
+                    //contact.AccountNumber = Settings.AccountNumber;
+                    //contact.DeviceID = Settings.DeviceID;
+                    //contact.IsVarified = Settings.IsVarified;
+                    _viewModel.Navigate(userDeviceBo);
+                
                 }
             }
             catch (Exception e)

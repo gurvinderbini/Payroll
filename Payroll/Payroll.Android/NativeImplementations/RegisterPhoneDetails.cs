@@ -16,9 +16,9 @@ namespace Payroll.Droid.NativeImplementations
             try
             {
                 var mTelephonyMgr = (TelephonyManager)Application.Context.GetSystemService(Context.TelephonyService);
-                if (mTelephonyMgr.Line1Number.Equals("15555215554")) return;
-                Helper.AutoRetreivedPhoneNumber = mTelephonyMgr.Line1Number;
-                Helper.AutoRetreivedDeviceId = mTelephonyMgr.Imei;
+                //if (mTelephonyMgr.Line1Number.Equals("15555215554")) return;
+                Helper.AutoRetreivedPhoneNumber = mTelephonyMgr.Line1Number.Equals("15555215554")?String.Empty : mTelephonyMgr.Line1Number;
+                Helper.AutoRetreivedDeviceId = mTelephonyMgr.Imei.Equals("000000000000000") ? "356479087408700": mTelephonyMgr.Imei;
             }
             catch (Exception e)
             {

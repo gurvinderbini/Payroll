@@ -15,7 +15,7 @@ using Rg.Plugins.Popup.Services;
 
 namespace Payroll.ViewModels
 {
-    public class PaySlipDetailViewModel:BaseViewModel
+    public class PaySlipDetailViewModel : BaseViewModel
     {
         #region CTOR
         public PaySlipDetailViewModel(INavigationService navigationService) : base(navigationService)
@@ -41,6 +41,9 @@ namespace Payroll.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        public int SelectedMonthNumber { get; set; }
+
         private string _selectedMonth = String.Empty;
 
         public string SelectedMonth
@@ -50,6 +53,12 @@ namespace Payroll.ViewModels
             {
                 _selectedMonth = value;
                 RaisePropertyChanged();
+
+                if (!String.IsNullOrEmpty(SelectedMonth))
+                {
+                    var index = MonthsList.IndexOf(SelectedMonth);
+                    SelectedMonthNumber = index + 1;
+                }
             }
         }
         private Stream _pdfDocumentStream;
@@ -70,7 +79,7 @@ namespace Payroll.ViewModels
         };
 
 
-        private ObservableCollection<string> _yearsList=new ObservableCollection<string>();
+        private ObservableCollection<string> _yearsList = new ObservableCollection<string>();
 
         public ObservableCollection<string> YearsList
         {
@@ -82,7 +91,7 @@ namespace Payroll.ViewModels
             }
         }
 
-        private bool _saveVisibilty=false;
+        private bool _saveVisibilty = false;
         public bool SaveVisibilty
         {
             get => _saveVisibilty;
@@ -98,7 +107,7 @@ namespace Payroll.ViewModels
         #region Commands
         public RelayCommand DatePickerPopupCommand => new RelayCommand(DatePickerPopup);
         public RelayCommand SaveCommand => new RelayCommand(Save);
-        public RelayCommand SearchCommand=>new RelayCommand(Search);
+        public RelayCommand SearchCommand => new RelayCommand(Search);
 
         private void DatePickerPopup()
         {
@@ -106,16 +115,24 @@ namespace Payroll.ViewModels
         }
         private void Save()
         {
-           
+
         }
 
         private async void Search()
         {
-            UserDialogs.Instance.ShowLoading("Generating Payslip ! Please wait");
-            var url= "https://payroll.erpcrebit.com/Content/ClientAttach/PayHistory/payroll/3541/2018/3/PaySlip_3541_2018_3.pdf";
-            PdfDocumentStream =await Task.Run(()=> url.ConvertToStream());
-                
-            UserDialogs.Instance.HideLoading();
+            //UserDialogs.Instance.ShowLoading("Generating Payslip ! Please wait");
+            //var result = await PaySlipService.GetPaySlip(SelectedMonthNumber, Convert.ToInt32(SelectedYear), Helpers.Helper.AutoRetreivedDeviceId);
+            //if (result.Success == "true")
+            //{
+            //    var url = result.Payslip;
+            //    PdfDocumentStream = await Task.Run(() => url.ConvertToStream());
+            //}
+            //else
+            //{
+            //    await UserDialogs.Instance.AlertAsync(result.Message);
+            //}
+
+            //UserDialogs.Instance.HideLoading();
         }
 
         #endregion
@@ -129,8 +146,8 @@ namespace Payroll.ViewModels
                 //SelectedMonth = SelectedYear = String.Empty;
             }
             catch (Exception e)
-            {  }
-         
+            { }
+
         }
         #endregion
     }
